@@ -1,0 +1,42 @@
+# eclipse
+bin/
+*.launch
+.settings/
+.metadata/
+.classpath
+.project
+
+# idea
+out/
+*.ipr
+*.iws
+*.iml
+.idea/
+
+# gradle
+build/
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# run / local game data
+run/
+runs/
+logs/
+crash-reports/
+*.log
+
+# mixin / forge local junk
+.mixin.out/
+*.asm
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.kate-swp
+
+# local secrets / machine-specific
+local.properties
+*.hprof

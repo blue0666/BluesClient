@@ -1,0 +1,15 @@
+{
+  "package": "com.blue.bluesclient.modmixins",
+  "required": true,
+  "refmap": "mixins.bluesclient.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [],
+  "server": [],
+  "client": [
+    "dshuds.CompassHUDMixin",
+    "rustic.LayerIronSkinMixin"
+  ],
+  "plugin": "com.blue.bluesclient.mixin.LateMixinConfig"
+}

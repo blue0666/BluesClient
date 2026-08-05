@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.blue.bluesclient.mixins",
+  "refmap": "mixins.bluesclient.refmap.json",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "alwayssneak.EntityPlayerSPMixin",
+    "alwayssneak.MovementInputFromOptionsMixin",
+    "blockfakevillager.PlayerControllerMPMixin"
+  ]
+}
