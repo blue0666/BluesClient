@@ -5,11 +5,17 @@
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",
+  "mixinextras": {"minVersion": "0.5.0"},
   "mixins": [],
   "server": [],
   "client": [
     "dshuds.CompassHUDMixin",
-    "rustic.LayerIronSkinMixin"
+    "rustic.LayerIronSkinMixin",
+    "bettercombatmod.BetterSurvivalHandler_Mixin",
+    "bettercombatmod.EventHandlersClient_Invoker",
+    "mujmajnkraftsbettersurvival.ItemNunchaku_Mixin",
+    "mujmajnkraftsbettersurvival.ModClientHandler_Mixin"
+
   ],
   "plugin": "com.blue.bluesclient.mixin.LateMixinConfig"
 }

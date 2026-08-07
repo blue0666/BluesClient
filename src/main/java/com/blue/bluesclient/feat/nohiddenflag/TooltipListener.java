@@ -7,6 +7,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -17,9 +18,11 @@ public class TooltipListener {
     public static void onItemTooltip(ItemTooltipEvent event) {
         if (!BCConfig.NoHiddenFlag.getBooleanValue()) return;
         if (!GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak)) return;
-
         ItemStack stack = event.getItemStack();
         if (stack.isEmpty() || !stack.hasTagCompound()) return;
+        ResourceLocation registryName = stack.getItem().getRegistryName();
+        if (registryName == null) return;
+        if (registryName.getNamespace().equals("bountifulbaubles")) return;
 
         NBTTagCompound tag = stack.getTagCompound();
         if (!tag.hasKey("HideFlags")) return;

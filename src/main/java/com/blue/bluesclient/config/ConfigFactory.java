@@ -5,7 +5,11 @@ import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
 import fi.dy.masa.malilib.config.options.ConfigInteger;
 import fi.dy.masa.malilib.config.options.ConfigStringList;
+import fi.dy.masa.malilib.hotkeys.IHotkeyCallback;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
+import fi.dy.masa.malilib.util.InfoUtils;
+
+import java.util.function.BooleanSupplier;
 
 public class ConfigFactory {
     private static final String DEFAULT_COMMENT="No comment";
@@ -60,5 +64,13 @@ public class ConfigFactory {
 
     public static ConfigInteger ofInteger(String name, int defaultValue, int minValue, int maxValue, boolean useSlider, String comment) {
         return new ConfigInteger(name, defaultValue, minValue, maxValue, useSlider, comment);
+    }
+
+    public static void setToggleCallback(ConfigHotkey config, IHotkeyCallback rawCallback, BooleanSupplier newValue) {
+        config.getKeybind().setCallback((action, key) -> {
+            boolean success = rawCallback.onKeyAction(action, key);
+            InfoUtils.printBooleanConfigToggleMessage(config.getPrettyName(), newValue.getAsBoolean());
+            return success;
+        });
     }
 }
