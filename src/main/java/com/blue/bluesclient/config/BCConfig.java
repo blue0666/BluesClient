@@ -42,7 +42,7 @@ public class BCConfig implements IConfigHandler {
 
     public static final List<IConfigBase> VALUE;
     public static final ConfigBoolean AlwaysSneak = ofBoolean("常驻潜行专精",false,"让玩家的潜行专精一直生效，不需要常按，且仍旧可以自由移动甚至开箱");
-    public static final ConfigBoolean DamageDisplay = ofBoolean("伤害显示",false,"在左下角实时显示伤害来源与类型");
+    public static final ConfigBoolean DamageDisplay = ofBoolean("伤害显示",false,"在左下角实时显示玩家受到的伤害来源与类型\n同时显示玩家的输出效果\nTips:服务器中不生效");
     public static final ConfigBoolean TileEntityEsp = ofBoolean("容器透视",false,"透视方块实体类型，可用于寄生虫大楼找箱子，只透视方块实体而不是所有方块是因为这样能大幅提高性能");
     public static final ConfigInteger TileEntityEspDistance = ofInteger("容器透视距离",64,1,256);
     public static final ConfigBoolean EverythingNunchaku = ofBoolean("万物双截棍:仅武器",false,"让武器攻击方式都像双截棍一样，副手也可以生效\n功能搬运自cdstk，特别鸣谢");
