@@ -15,9 +15,20 @@ public class LateMixinConfig implements IMixinConfigPlugin {
     @Override
     public String getRefMapperConfig() { return null; }
 
+    private static final boolean DEBUG = false;
+
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return modLoadedForMixin(mixinClassName);
+        String packagePath = mixinClassName.substring(0, mixinClassName.lastIndexOf('.'));
+        String modId = packagePath.substring(packagePath.lastIndexOf('.') + 1);
+        boolean loader = false;
+        try { loader = Loader.isModLoaded(modId); } catch (Throwable ignored) {}
+        boolean fermium = fermiumbooter.FermiumRegistryAPI.isModPresent(modId);
+        if (DEBUG) {
+            System.out.println("[BC-LATE] " + modId + " loader=" + loader + " fermium=" + fermium + " target=" + targetClassName);
+        }
+        return fermium || loader;
+        //return modLoadedForMixin(mixinClassName);
     }
 
     @Override
