@@ -38,10 +38,10 @@ public class BluesClient
     {
         logger = event.getModLog();
         MinecraftForge.EVENT_BUS.register(TooltipListener.class);
-        if(Loader.isModLoaded("bettercombatmod")){
+        if(Loader.isModLoaded(ModReference.BETTERCOMBATMOD)){
             MinecraftForge.EVENT_BUS.register(RLCombatHandler.class);
         }
-        if (Loader.isModLoaded(ModReference.FIRSTAID)) { // 或 "firstaid"
+        if (Loader.isModLoaded(ModReference.FIRSTAID)) {
             MinecraftForge.EVENT_BUS.register(DamageDisplayHandler.class);
             MinecraftForge.EVENT_BUS.register(OutgoingDamageDisplayHandler.class);
         }

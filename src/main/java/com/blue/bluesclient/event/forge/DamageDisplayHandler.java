@@ -134,7 +134,6 @@ public class DamageDisplayHandler {
         shownActualThisHit = true;
     }
 
-    /** 合并：真死了但本次没打出「实际」时再补一句（带估算数值） */
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
         if (!BCConfig.DamageDisplay.getBooleanValue()) return;
@@ -142,7 +141,7 @@ public class DamageDisplayHandler {
         EntityPlayer player = (EntityPlayer) event.getEntityLiving();
         if (player.world.isRemote) return;
         if (!isLocalPlayer(player)) return;
-        if (shownActualThisHit) return; // FA 已打过，不重复
+        if (shownActualThisHit) return;
 
         // 实际 ≈ min(原始, 受伤前剩余)；溢出部分扣不进去
         float actual = Math.min(lastRawAmount, lastRemainingHp);
@@ -154,7 +153,7 @@ public class DamageDisplayHandler {
         if ("-".equals(from) || from == null) from = lastFrom;
 
         send(player, redTag("实际伤害") + String.format(
-                " 数值:%.2f | 类型:%s | 未分摊:- | 各部位:-(致死补全) | 来源:%s",
+                " 数值:%.2f | 类型:%s | 未分摊:- | 各部位:- | 来源:%s",
                 actual, type, from));
         shownActualThisHit = true;
     }
