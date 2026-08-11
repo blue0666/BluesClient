@@ -14,7 +14,7 @@ import java.util.List;
 
 public final class BlockEspScanner {
     public static final int SCAN_RANGE = 64;
-    public static final int SCAN_INTERVAL_TICKS = 20;
+    public static final int SCAN_INTERVAL_TICKS = 30;
 
     private BlockEspScanner() {
     }
@@ -44,6 +44,7 @@ public final class BlockEspScanner {
             return;
         }
         int rangeSq = range * range;
+
 
         List<BlockPos> foundNormalBlockList = new ArrayList<>();
         List<BlockPos> foundWitherBlockList = new ArrayList<>();
@@ -82,6 +83,7 @@ public final class BlockEspScanner {
                 continue;
             }
             if (BCConfig.TileEntityEsp.getBooleanValue()){
+                if(BCConfig.TileEntityEspSkipOpened.getBooleanValue() && BlockEspStore.isOpenedContainer(pos)){continue;}
                 foundNormalBlockList.add(pos.toImmutable());
             }
         }

@@ -51,6 +51,7 @@ dependencies {
     compileOnly rfg.deobf("curse.maven:rustic-${rustic_version}")
     compileOnly rfg.deobf("curse.maven:dynamic-surroundings-huds-${dshuds_version}")
     compileOnly rfg.deobf("curse.maven:first-aid-${firstaid_version}")
+    compileOnly rfg.deobf(files("libs/SRParasites-1.12.2v1.9.21.jar"))
 
     compileOnly rfg.deobf("curse.maven:better-survival-mod-${bettersurvival_version}")
     compileOnly rfg.deobf("curse.maven:reach-fix-${reachfix_version}")

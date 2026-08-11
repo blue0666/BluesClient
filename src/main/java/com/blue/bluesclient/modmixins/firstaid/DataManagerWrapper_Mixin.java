@@ -2,8 +2,6 @@ package com.blue.bluesclient.modmixins.firstaid;
 
 import com.blue.bluesclient.config.BCConfig;
 import ichttt.mods.firstaid.common.DataManagerWrapper;
-import ichttt.mods.firstaid.common.damagesystem.distribution.DamageDistribution;
-import ichttt.mods.firstaid.common.damagesystem.distribution.HealthDistribution;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

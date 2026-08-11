@@ -4,12 +4,18 @@ import com.blue.bluesclient.BluesClient;
 import com.blue.bluesclient.config.BCConfig;
 import com.google.common.collect.ImmutableList;
 import fi.dy.masa.malilib.config.gui.ConfigGuiTabBase;
+import fi.dy.masa.malilib.config.options.IConfigBase;
 import fi.dy.masa.malilib.gui.GuiConfigsBase;
 import fi.dy.masa.malilib.gui.interfaces.IConfigGuiTab;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.blue.bluesclient.ModReference.hasRlCombatServerConfig;
+
 public class BCConfigScreen extends GuiConfigsBase{
     private static final ConfigGuiTabBase VALUE =
-            new ConfigGuiTabBase("值", 100, false, BCConfig.VALUE);
+            new ConfigGuiTabBase("值", 100, false, buildValueTab());
     private static final ConfigGuiTabBase HOTKEY =
             new ConfigGuiTabBase("热键", 200, true, BCConfig.KEYBIND);
     private static final ConfigGuiTabBase LIST =
@@ -30,5 +36,17 @@ public class BCConfigScreen extends GuiConfigsBase{
     @Override
     public void setCurrentTab(IConfigGuiTab tab) {
         currentTab = tab;
+    }
+
+    private static ImmutableList<IConfigBase> buildValueTab() {
+        List<IConfigBase> list = new ArrayList<>(BCConfig.VALUE);
+        if (!hasRlCombatServerConfig()) {
+            list.remove(BCConfig.EverythingNunchaku);
+            list.remove(BCConfig.EverythingNunchakuAllowAll);
+            list.remove(BCConfig.RLCombatOffhand);
+            list.remove(BCConfig.RLCombatEntityBlacklist);
+            list.remove(BCConfig.RLCombatOffhandNunchaku);
+        }
+        return ImmutableList.copyOf(list);
     }
 }

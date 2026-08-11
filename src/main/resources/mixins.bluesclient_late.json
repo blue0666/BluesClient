@@ -1,6 +1,6 @@
 {
   "package": "com.blue.bluesclient.modmixins",
-  "required": true,
+  "required": false,
   "refmap": "mixins.bluesclient.refmap.json",
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
@@ -9,7 +9,9 @@
     "minVersion": "0.5.0"
   },
   "mixins": [
-    "firstaid.DataManagerWrapper_Mixin"
+    "firstaid.DataManagerWrapper_Mixin",
+    "srparasites.BlockInfestedRubbleMixin",
+    "srparasites.ParasiteEventWorldSpreadMixin"
   ],
   "server": [],
   "client": [
@@ -18,7 +20,8 @@
     "dshuds.CompassHUDMixin",
     "mujmajnkraftsbettersurvival.ItemNunchaku_Mixin",
     "mujmajnkraftsbettersurvival.ModClientHandler_Mixin",
-    "rustic.LayerIronSkinMixin"
+    "rustic.LayerIronSkinMixin",
+    "srparasites.SRPFogMixin"
   ],
   "plugin": "com.blue.bluesclient.mixin.LateMixinConfig"
 }

@@ -1,11 +1,14 @@
 package com.blue.bluesclient.feat.blockesp;
 
 import com.blue.bluesclient.config.BCConfig;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 //方块透视扫描结果缓存与配置记录
 public final class BlockEspStore {
@@ -13,6 +16,9 @@ public final class BlockEspStore {
     private static final List<BlockPos> WITHER = new ArrayList<>();
     private static final List<BlockPos> GORGON = new ArrayList<>();
     private static final List<BlockPos> ELDERGUARDIAN = new ArrayList<>();
+    private static final int OPENED_MAX = 256;
+    private static final LinkedHashSet<BlockPos> OPENED = new LinkedHashSet<>();
+
 
     private BlockEspStore() {
     }
@@ -69,5 +75,42 @@ public final class BlockEspStore {
         WITHER.clear();
         GORGON.clear();
         ELDERGUARDIAN.clear();
+        OPENED.clear();
+    }
+
+    private static void addOpened(BlockPos pos) {
+        BlockPos p = pos.toImmutable();
+        OPENED.remove(p);
+        OPENED.add(p);
+        while (OPENED.size() > OPENED_MAX) {
+            Iterator<BlockPos> it = OPENED.iterator();
+            it.next();
+            it.remove();
+        }
+    }
+
+    public static synchronized boolean isTrackedContainer(World world, BlockPos pos){
+        List<String> allow = BCConfig.TileEntityEspList.getStrings();
+        Block block = world.getBlockState(pos).getBlock();
+        ResourceLocation id = Block.REGISTRY.getNameForObject(block);
+        if (allow.contains(id.toString())) {
+           return true;
+        }
+        return false;
+    }
+    public static synchronized boolean isOpenedContainer(BlockPos pos) {
+        return OPENED.contains(pos);
+    }
+
+    public static synchronized void markOpenedContainer(World world, BlockPos pos) {
+        addOpened(pos);
+        TileEntity te = world.getTileEntity(pos);
+        if (!(te instanceof TileEntityChest)) return;
+        TileEntityChest chest = (TileEntityChest) te;
+        chest.checkForAdjacentChests();
+        if (chest.adjacentChestXNeg != null) addOpened(chest.adjacentChestXNeg.getPos());
+        if (chest.adjacentChestXPos != null) addOpened(chest.adjacentChestXPos.getPos());
+        if (chest.adjacentChestZNeg != null) addOpened(chest.adjacentChestZNeg.getPos());
+        if (chest.adjacentChestZPos != null) addOpened(chest.adjacentChestZPos.getPos());
     }
 }

@@ -29,7 +29,7 @@ public class BluesClient
 {
     public static final String MODID = "bluesclient";
     public static final String NAME = "BluesClient";
-    public static final String VERSION = "0.0.7";
+    public static final String VERSION = "0.0.8";
 
     private static Logger logger;
 
