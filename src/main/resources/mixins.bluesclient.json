@@ -7,6 +7,8 @@
   "client": [
     "alwayssneak.EntityPlayerSPMixin",
     "alwayssneak.MovementInputFromOptionsMixin",
-    "blockfakevillager.PlayerControllerMPMixin"
-  ]
+    "blockfakevillager.PlayerControllerMPMixin",
+    "mobsglowing.EntityGlowingMixin"
+  ],
+  "mixins": []
 }

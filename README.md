@@ -2,7 +2,7 @@
 
 ---
 
-Rlcraft/RlcDregora整合包辅助模组，提供了一些轮椅与自动化功能
+Rlcraft/RlcDregora整合包辅助模组，提供了一些轮椅与自动化功能，目前功能以服务Dregora版本优先级较高
 
 由 Cleanroom Mod Dev Template 生成，特别鸣谢：De6ris，本mod参考了许多DebrisClient的架构与写法
 

@@ -10,6 +10,7 @@ public class ModReference {
     public static String BETTERCOMBATMOD = "bettercombatmod";
     public static String REACHFIX = "reachfix";
     public static String SRParasites = "srparasites";
+    public static String INFERNALMOBS = "infernalmobs";
 
     public static boolean hasMod(String modId) {
         return Loader.isModLoaded(modId);
