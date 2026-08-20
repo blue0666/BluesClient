@@ -4,6 +4,7 @@ import com.blue.bluesclient.event.forge.DamageDisplayHandler;
 import com.blue.bluesclient.event.forge.OutgoingDamageDisplayHandler;
 import com.blue.bluesclient.event.forge.RLCombatHandler;
 import com.blue.bluesclient.event.malilib.InitListener;
+import com.blue.bluesclient.feat.allowflight.FlightHandler;
 import com.blue.bluesclient.feat.everythingnunchaku.NunchakuConfigProvider;
 import com.blue.bluesclient.feat.nohiddenflag.TooltipListener;
 import fi.dy.masa.malilib.event.InitializationHandler;
@@ -29,7 +30,7 @@ public class BluesClient
 {
     public static final String MODID = "bluesclient";
     public static final String NAME = "BluesClient";
-    public static final String VERSION = "0.0.8";
+    public static final String VERSION = "0.0.9";
 
     private static Logger logger;
 
@@ -45,6 +46,7 @@ public class BluesClient
             MinecraftForge.EVENT_BUS.register(DamageDisplayHandler.class);
             MinecraftForge.EVENT_BUS.register(OutgoingDamageDisplayHandler.class);
         }
+        MinecraftForge.EVENT_BUS.register(FlightHandler.class);
         InitializationHandler.getInstance()
                 .registerInitializationHandler(new InitListener());
     }

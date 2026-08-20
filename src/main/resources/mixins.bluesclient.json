@@ -5,10 +5,14 @@
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "allowflight.CPacketPlayerMixin",
+    "allowflight.EntityPlayerSPFlightMixin",
+    "allowflight.NetHandlerPlayClientMixin",
     "alwayssneak.EntityPlayerSPMixin",
     "alwayssneak.MovementInputFromOptionsMixin",
     "blockfakevillager.PlayerControllerMPMixin",
     "mobsglowing.EntityGlowingMixin"
   ],
-  "mixins": []
+  "mixins": [
+  ]
 }

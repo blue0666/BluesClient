@@ -1,5 +1,7 @@
 package com.blue.bluesclient.mixin;
 
+import com.blue.bluesclient.ModReference;
+import fermiumbooter.FermiumRegistryAPI;
 import net.minecraftforge.fml.common.Loader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -19,16 +21,11 @@ public class LateMixinConfig implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        String packagePath = mixinClassName.substring(0, mixinClassName.lastIndexOf('.'));
-        String modId = packagePath.substring(packagePath.lastIndexOf('.') + 1);
-        boolean loader = false;
-        try { loader = Loader.isModLoaded(modId); } catch (Throwable ignored) {}
-        boolean fermium = fermiumbooter.FermiumRegistryAPI.isModPresent(modId);
+        boolean apply = modLoadedForMixin(mixinClassName);
         if (DEBUG) {
-            System.out.println("[BC-LATE] " + modId + " loader=" + loader + " fermium=" + fermium + " target=" + targetClassName);
+            System.out.println("[BC-LATE] " + mixinClassName + " apply=" + apply + " target=" + targetClassName);
         }
-        return fermium || loader;
-        //return modLoadedForMixin(mixinClassName);
+        return apply;
     }
 
     @Override
@@ -45,7 +42,15 @@ public class LateMixinConfig implements IMixinConfigPlugin {
 
     private boolean modLoadedForMixin(String mixinClassName) {
         String packagePath = mixinClassName.substring(0, mixinClassName.lastIndexOf('.'));
-        String packageName = packagePath.substring(packagePath.lastIndexOf('.') + 1);
-        return Loader.isModLoaded(packageName);
+        String modId = packagePath.substring(packagePath.lastIndexOf('.') + 1);
+        boolean present = false;
+        try {
+            present = Loader.isModLoaded(modId) || FermiumRegistryAPI.isModPresent(modId);
+        } catch (Throwable ignored) { }
+        if (!present) return false;
+        if ("srparasites".equals(modId)) {
+            return ModReference.isSrpBelow110();
+        }
+        return true;
     }
 }

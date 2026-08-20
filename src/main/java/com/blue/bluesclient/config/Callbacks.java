@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.CPacketEntityAction;
 
 import static com.blue.bluesclient.config.BCConfig.EverythingNunchakuToggle;
+import static com.blue.bluesclient.config.BCConfig.FlightToggle;
 
 public class Callbacks {
     public static void init(Minecraft client) {
@@ -41,6 +42,21 @@ public class Callbacks {
                     BCConfig.EverythingNunchaku.getPrettyName(),
                     BCConfig.EverythingNunchaku.getBooleanValue());
             return true;
+        });
+
+        FlightToggle.getKeybind().setCallback((a,k)->{
+            BCConfig.AllowFlight.toggleBooleanValue();
+            InfoUtils.printBooleanConfigToggleMessage(
+                    BCConfig.AllowFlight.getPrettyName(),
+                    BCConfig.AllowFlight.getBooleanValue());
+            return true;
+        });
+
+        BCConfig.AllowFlight.setValueChangeCallback(cfg -> {
+            if (cfg.getBooleanValue()) return;
+            Minecraft mc = Minecraft.getMinecraft();
+            if (mc.player == null || mc.playerController == null) return;
+            mc.playerController.setPlayerCapabilities(mc.player);
         });
     }
 }
