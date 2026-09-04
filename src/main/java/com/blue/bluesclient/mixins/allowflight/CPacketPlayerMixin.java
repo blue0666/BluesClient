@@ -15,7 +15,7 @@ public abstract class CPacketPlayerMixin {
     protected boolean onGround;
     @Inject(method = "writePacketData", at = @At("HEAD"))
     private void bluesclient$forceOnGround(PacketBuffer buf, CallbackInfo ci) {
-        if (BCConfig.AllowFlight.getBooleanValue()) {
+        if (BCConfig.FlightDebug.getBooleanValue()) {
             this.onGround = true;
         }
     }

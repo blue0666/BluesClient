@@ -57,12 +57,14 @@ public final class BlockEspRenderer {
         );
         GL11.glLineWidth(3.0F);
 
+        float alpha = BCConfig.TileEntityEspTransparency.getIntegerValue()/100.0F;
+
         for (BlockPos pos : positions) {
             AxisAlignedBB bb = new AxisAlignedBB(pos)
                     .grow(0.002D)
                     .offset(-vx, -vy, -vz);
 
-            RenderGlobal.drawSelectionBoundingBox(bb, red, green, blue, 1.0F);
+            RenderGlobal.drawSelectionBoundingBox(bb, red, green, blue, alpha);
         }
 
         GlStateManager.glLineWidth(1.0F);

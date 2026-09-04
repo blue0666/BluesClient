@@ -45,14 +45,14 @@ public class Callbacks {
         });
 
         FlightToggle.getKeybind().setCallback((a,k)->{
-            BCConfig.AllowFlight.toggleBooleanValue();
+            BCConfig.FlightDebug.toggleBooleanValue();
             InfoUtils.printBooleanConfigToggleMessage(
-                    BCConfig.AllowFlight.getPrettyName(),
-                    BCConfig.AllowFlight.getBooleanValue());
+                    BCConfig.FlightDebug.getPrettyName(),
+                    BCConfig.FlightDebug.getBooleanValue());
             return true;
         });
 
-        BCConfig.AllowFlight.setValueChangeCallback(cfg -> {
+        BCConfig.FlightDebug.setValueChangeCallback(cfg -> {
             if (cfg.getBooleanValue()) return;
             Minecraft mc = Minecraft.getMinecraft();
             if (mc.player == null || mc.playerController == null) return;

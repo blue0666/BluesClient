@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableList;
 import fi.dy.masa.malilib.config.IConfigHandler;
 import fi.dy.masa.malilib.config.options.*;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.config.Config;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -45,16 +44,17 @@ public class BCConfig implements IConfigHandler {
 
     public static final List<IConfigBase> VALUE;
     public static final ConfigBoolean AlwaysSneak = ofBoolean("常驻潜行专精", false, "让玩家的潜行专精一直生效，不需要常按，且仍旧可以自由移动与开箱");
-    public static final ConfigBoolean DamageDisplay = ofBoolean("伤害显示", false, "在左下角实时显示玩家受到的伤害来源与类型\n同时显示玩家的输出效果\n" + "Tips:服务器中不生效");
+    public static final ConfigBoolean DamageDisplay = ofBoolean("伤害调试", false, "在左下角实时显示玩家受到的伤害来源与类型\n同时显示玩家的输出效果\n" +  TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
     public static final ConfigBoolean TileEntityEsp = ofBoolean("容器透视", false, "透视方块实体类型，可用于寄生虫大楼找箱子，只透视方块实体而不是所有方块是因为这样能大幅提高性能");
     public static final ConfigInteger TileEntityEspDistance = ofInteger("容器透视距离", 64, 1, 256);
-    public static final ConfigBoolean TileEntityEspSkipOpened = ofBoolean("容器透视取消已打开", false, "已经开过的容器自动去除高亮");
+    public static final ConfigInteger TileEntityEspTransparency = ofInteger("容器透视透明度",100,0,100,"大量的白色方框有点太影响观感了，自选适当调低透明度");
+    public static final ConfigBoolean TileEntityEspSkipOpened = ofBoolean("容器透视取消已打开", false, "已经开过的容器自动不再高亮");
     public static final ConfigBoolean EverythingNunchaku = ofBoolean("万物双截棍:仅武器", false, "让武器攻击方式都像双截棍一样，副手也可以生效\n功能搬运自cdstk，特别鸣谢");
     public static final ConfigBoolean EverythingNunchakuAllowAll = ofBoolean("万物双截棍:所有物品", false, "忽略白名单，任意主手物品都可长按连打");
     public static final ConfigBoolean RLCombatOffhand = ofBoolean("万物双截棍:开启副手", false, "开启副手攻击\n" + TextFormatting.YELLOW + "Tips:可攻击的副手由服务端限制，例如双截棍在默认服务器中无法生效\n单人档需修改配置才能生效" + TextFormatting.RESET);
     public static final ConfigBoolean RLCombatEntityBlacklist = ofBoolean("万物双截棍:攻击实体过滤", true, "副手攻击过滤实体\n这只会阻止双截棍方式的连击效果，单点右键导致的攻击由RLCombat自身管理");
     public static final ConfigBoolean RLCombatOffhandNunchaku = ofBoolean("万物双截棍:副手动画不依赖主手", false, "副手攻击动画例如双截棍的旋转也会生效");
-    public static final ConfigBoolean AllowFlight = ofBoolean("开启飞行",false,"十年老兵(doge)");
+    public static final ConfigBoolean FlightDebug = ofBoolean("飞行调试",false,"飞行的药水指环Plus");
     public static final List<IConfigBase> LIST;
     public static final ConfigStringList TileEntityEspList = ofStringList("透视容器列表", ImmutableList.of("minecraft:chest"));
     public static final ConfigStringList NunchakuItemClassWhitelist = ofStringList(
@@ -107,13 +107,14 @@ public class BCConfig implements IConfigHandler {
                 DamageDisplay,
                 TileEntityEsp,
                 TileEntityEspDistance,
+                TileEntityEspTransparency,
                 TileEntityEspSkipOpened,
                 EverythingNunchaku,
                 EverythingNunchakuAllowAll,
                 RLCombatOffhand,
                 RLCombatEntityBlacklist,
                 RLCombatOffhandNunchaku,
-                AllowFlight
+                FlightDebug
         );
         LIST = ImmutableList.of(
                 TileEntityEspList,

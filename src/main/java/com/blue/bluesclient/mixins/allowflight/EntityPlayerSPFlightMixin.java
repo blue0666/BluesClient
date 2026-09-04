@@ -18,7 +18,7 @@ public class EntityPlayerSPFlightMixin {
             )
     )
     private boolean bluesclient$packetOnGround(EntityPlayerSP self) {
-        if (BCConfig.AllowFlight.getBooleanValue()) {
+        if (BCConfig.FlightDebug.getBooleanValue()) {
             return true;
         }
         return self.onGround;

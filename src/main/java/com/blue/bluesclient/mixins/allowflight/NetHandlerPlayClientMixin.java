@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class NetHandlerPlayClientMixin {
     @Inject(method = "handlePlayerAbilities", at = @At("RETURN"))
     private void bluesclient$keepLocalFlight(SPacketPlayerAbilities packet, CallbackInfo ci) {
-        if (!BCConfig.AllowFlight.getBooleanValue()) return;
+        if (!BCConfig.FlightDebug.getBooleanValue()) return;
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         if (player == null) return;
         player.capabilities.allowFlying = true;

@@ -62,6 +62,10 @@ public class ConfigFactory {
         return ofInteger(name, defaultValue, minValue, maxValue, useSlider, DEFAULT_COMMENT);
     }
 
+    public static ConfigInteger ofInteger(String name, int defaultValue, int minValue, int maxValue, String comment) {
+        return ofInteger(name, defaultValue, minValue, maxValue, false, comment);
+    }
+
     public static ConfigInteger ofInteger(String name, int defaultValue, int minValue, int maxValue, boolean useSlider, String comment) {
         return new ConfigInteger(name, defaultValue, minValue, maxValue, useSlider, comment);
     }

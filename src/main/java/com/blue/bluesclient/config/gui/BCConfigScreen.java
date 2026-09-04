@@ -5,7 +5,6 @@ import com.blue.bluesclient.ModReference;
 import com.blue.bluesclient.config.BCConfig;
 import com.google.common.collect.ImmutableList;
 import fi.dy.masa.malilib.config.gui.ConfigGuiTabBase;
-import fi.dy.masa.malilib.config.options.ConfigHotkey;
 import fi.dy.masa.malilib.config.options.IConfigBase;
 import fi.dy.masa.malilib.gui.GuiConfigsBase;
 import fi.dy.masa.malilib.gui.interfaces.IConfigGuiTab;
@@ -50,7 +49,7 @@ public class BCConfigScreen extends GuiConfigsBase{
             list.remove(BCConfig.RLCombatOffhandNunchaku);
         }
         if(!ModReference.VanillaPlus){
-            list.remove(BCConfig.AllowFlight);
+            list.remove(BCConfig.FlightDebug);
         }
         return ImmutableList.copyOf(list);
     }
