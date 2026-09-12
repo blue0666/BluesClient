@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.versioning.ArtifactVersion;
 import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion;
 
 public class ModReference {
-    public static final boolean VanillaPlus = true;
+    public static final boolean VanillaPlus = false;
     public static String RUSTIC = "rustic";
     public static String DSHUDS = "dshuds";
     public static String FIRSTAID = "firstaid";
@@ -14,6 +14,7 @@ public class ModReference {
     public static String REACHFIX = "reachfix";
     public static String SRParasites = "srparasites";
     public static String INFERNALMOBS = "infernalmobs";
+    public static String EAGLEMIXINS = "eaglemixins";
 
     public static boolean hasMod(String modId) {
         return Loader.isModLoaded(modId);

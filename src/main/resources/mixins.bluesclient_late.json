@@ -9,6 +9,7 @@
     "minVersion": "0.5.0"
   },
   "mixins": [
+    "eaglemixins.DamageFalloffHandlerMixin",
     "firstaid.DataManagerWrapper_Mixin",
     "srparasites.BlockInfestedRubbleMixin",
     "srparasites.ParasiteEventWorldSpreadMixin"

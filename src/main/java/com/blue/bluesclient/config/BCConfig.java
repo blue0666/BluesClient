@@ -45,6 +45,7 @@ public class BCConfig implements IConfigHandler {
     public static final List<IConfigBase> VALUE;
     public static final ConfigBoolean AlwaysSneak = ofBoolean("常驻潜行专精", false, "让玩家的潜行专精一直生效，不需要常按，且仍旧可以自由移动与开箱");
     public static final ConfigBoolean DamageDisplay = ofBoolean("伤害调试", false, "在左下角实时显示玩家受到的伤害来源与类型\n同时显示玩家的输出效果\n" +  TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
+    public static final ConfigBoolean NoDamageFallOff = ofBoolean("禁用伤害衰减",false,"禁用德雷版本的伤害衰减系统\n"+TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
     public static final ConfigBoolean TileEntityEsp = ofBoolean("容器透视", false, "透视方块实体类型，可用于寄生虫大楼找箱子，只透视方块实体而不是所有方块是因为这样能大幅提高性能");
     public static final ConfigInteger TileEntityEspDistance = ofInteger("容器透视距离", 64, 1, 256);
     public static final ConfigInteger TileEntityEspTransparency = ofInteger("容器透视透明度",100,0,100,"大量的白色方框有点太影响观感了，自选适当调低透明度");
@@ -105,6 +106,7 @@ public class BCConfig implements IConfigHandler {
         VALUE = ImmutableList.of(
                 AlwaysSneak,
                 DamageDisplay,
+                NoDamageFallOff,
                 TileEntityEsp,
                 TileEntityEspDistance,
                 TileEntityEspTransparency,
