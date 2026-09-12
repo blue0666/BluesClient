@@ -59,7 +59,7 @@ public class DamageDisplayHandler {
                 || amount == Float.POSITIVE_INFINITY;
     }
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingHurt(LivingHurtEvent event) {
         if (!BCConfig.DamageDisplay.getBooleanValue()) return;
         if (!(event.getEntityLiving() instanceof EntityPlayer)) return;
@@ -96,7 +96,7 @@ public class DamageDisplayHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onFirstAidLivingDamage(FirstAidLivingDamageEvent event) {
         if (!BCConfig.DamageDisplay.getBooleanValue()) return;
 

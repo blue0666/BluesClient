@@ -11,8 +11,10 @@
     "alwayssneak.EntityPlayerSPMixin",
     "alwayssneak.MovementInputFromOptionsMixin",
     "blockfakevillager.PlayerControllerMPMixin",
-    "mobsglowing.EntityGlowingMixin"
+    "mobsglowing.EntityGlowingMixin",
+    "damagedisplay.ForgeHooksOutgoingDamageMixin"
   ],
   "mixins": [
+
   ]
 }
