@@ -55,7 +55,7 @@ public class BCConfig implements IConfigHandler {
     public static final ConfigBoolean RLCombatOffhand = ofBoolean("万物双截棍:开启副手", false, "开启副手攻击\n" + TextFormatting.YELLOW + "Tips:可攻击的副手由服务端限制，例如双截棍在默认服务器中无法生效\n单人档需修改配置才能生效" + TextFormatting.RESET);
     public static final ConfigBoolean RLCombatEntityBlacklist = ofBoolean("万物双截棍:攻击实体过滤", true, "副手攻击过滤实体\n这只会阻止双截棍方式的连击效果，单点右键导致的攻击由RLCombat自身管理");
     public static final ConfigBoolean RLCombatOffhandNunchaku = ofBoolean("万物双截棍:副手动画不依赖主手", false, "副手攻击动画例如双截棍的旋转也会生效");
-    public static final ConfigBoolean FlightDebug = ofBoolean("飞行调试",false,"飞行的药水指环Plus");
+    public static final ConfigBoolean FlightDebug = ofBoolean("飞行调试",false,"堪比飞行的药水指环Plus");
     public static final List<IConfigBase> LIST;
     public static final ConfigStringList TileEntityEspList = ofStringList("透视容器列表", ImmutableList.of("minecraft:chest"));
     public static final ConfigStringList NunchakuItemClassWhitelist = ofStringList(
@@ -88,7 +88,7 @@ public class BCConfig implements IConfigHandler {
     public static final ConfigHotkey OpenWindow = ofHotkey("打开菜单", "B,C", "打开模组配置界面");
     public static final ConfigHotkey AlwaysSneakToggle = ofHotkey("切换一直潜行", "", "开启一直潜行");
     public static final ConfigHotkey EverythingNunchakuToggle = ofHotkey("切换万物双截棍", "", "开启万物双截棍");
-    public static final ConfigHotkey FlightToggle = ofHotkey("切换开启飞行","");
+    public static final ConfigHotkey FlightToggle = ofHotkey("切换飞行调试","");
 
     public static final List<IConfigBase> MISCELLANEOUS;
     public static final ConfigBoolean WitherSpawnerEsp = ofBoolean("凋零刷怪笼警告", false, "透视警告凋零刷怪笼");
@@ -97,7 +97,7 @@ public class BCConfig implements IConfigHandler {
     public static final ConfigBoolean BlockFakeLibrarianTrade = ofBoolean("阻止伪人村民交互", false, "拦截与伪人村民右键导致的爆炸与debuff");
     public static final ConfigBoolean DisableIronSkinRenderer = ofBoolean("禁用玩家钢铁皮肤渲染效果", false,"这个效果太丑陋了\n不是我喜欢的效果，直接禁用");
     public static final ConfigBoolean DisableCompassHUD = ofBoolean("禁用指南针手持坐标HUD", false, "指南针拿着的时候很挡视野，例如1.5幸运的彩蛋物品\n这里将其禁用，因为直接看F3的坐标就行了");
-    public static final ConfigBoolean NoHiddenFlag = ofBoolean("完全显示隐藏标签", false, "光标对准物品后按Shift，完全显示隐藏属性彩蛋物品的实际效果\n对诅咒物品有奇效\n注：可能与DebrisClient的额外显示互相覆写");
+    public static final ConfigBoolean NoHiddenFlag = ofBoolean("完全显示隐藏标签", false, "光标对准物品后按Shift，完全显示隐藏属性彩蛋物品的实际效果，以及潘多拉诅咒附魔\n对诅咒物品有奇效\n注：可能与DebrisClient的额外显示互相覆写");
     public static final ConfigBoolean NoSRPBiomeFog = ofBoolean("禁用寄生虫群系迷雾", false);
     public static final ConfigBoolean NoSRPBlockSpread = ofBoolean("禁用寄生虫方块污染扩散", false, "彻底禁用寄生虫群系的任何方块污染动作\n因为这一事件能给游戏带来巨额计算压力\n" + TextFormatting.YELLOW + "仅单人游戏中生效" + TextFormatting.RESET);
     public static final ConfigBoolean HighlightRustMob = ofBoolean("高亮生锈精英怪",false,"高亮警告生锈精英怪\n对后期玩家也有极大的威胁");

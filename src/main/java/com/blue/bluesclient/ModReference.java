@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.versioning.ArtifactVersion;
 import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion;
 
 public class ModReference {
-    public static final boolean VanillaPlus = false;
+    public static final boolean VanillaPlus = true;
     public static String RUSTIC = "rustic";
     public static String DSHUDS = "dshuds";
     public static String FIRSTAID = "firstaid";

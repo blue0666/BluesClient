@@ -11,6 +11,7 @@
   "mixins": [
     "eaglemixins.DamageFalloffHandlerMixin",
     "firstaid.DataManagerWrapper_Mixin",
+    "somanyenchantments.EnchantmentPandorasCurseMixin",
     "srparasites.BlockInfestedRubbleMixin",
     "srparasites.ParasiteEventWorldSpreadMixin"
   ],

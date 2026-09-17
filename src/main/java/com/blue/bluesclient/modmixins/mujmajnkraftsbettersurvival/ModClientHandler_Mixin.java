@@ -1,66 +1,85 @@
 package com.blue.bluesclient.modmixins.mujmajnkraftsbettersurvival;
 
 import com.blue.bluesclient.feat.everythingnunchaku.NunchakuConfigProvider;
-import com.llamalad7.mixinextras.expression.Definition;
-import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.llamalad7.mixinextras.sugar.Local;
 import com.mujmajnkraft.bettersurvival.client.ModClientHandler;
 import com.mujmajnkraft.bettersurvival.items.ItemNunchaku;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ModClientHandler.class)
 public abstract class ModClientHandler_Mixin {
+    private static final Item NUNCHAKU_TYPE_PROXY = new ItemNunchaku(Item.ToolMaterial.IRON);
 
-    @Definition(id = "ItemNunchaku", type = ItemNunchaku.class)
-    @Expression("? instanceof ItemNunchaku")
-    @ModifyExpressionValue(
+    @Redirect(
             method = "onClientTick",
-            at = @At("MIXINEXTRAS:EXPRESSION"),
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;",
+                    remap = true
+            ),
             remap = false
     )
-    private boolean everythingNunchaku_betterSurvivalModClientHandler_onClientTickAnyItem(boolean isNunchaku, @Local EntityPlayerSP player){
-        return isNunchaku || NunchakuConfigProvider.isClientNunchaku(player.getHeldItemMainhand().getItem());
+    private Item everythingNunchaku_betterSurvivalModClientHandler_onClientTickGetItem(ItemStack stack) {
+        Item item = stack.getItem();
+        if (item instanceof ItemNunchaku) {
+            return item;
+        }
+        if (NunchakuConfigProvider.isClientNunchaku(item)) {
+            return NUNCHAKU_TYPE_PROXY;
+        }
+        return item;
     }
 
     @WrapOperation(
             method = "onClientTick",
-            at = @At(value = "INVOKE", target = "Lcom/mujmajnkraft/bettersurvival/integration/RLCombatCompat;attackEntityFromClient(Lnet/minecraft/util/math/RayTraceResult;Lnet/minecraft/entity/player/EntityPlayer;)V"),
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lcom/mujmajnkraft/bettersurvival/integration/RLCombatCompat;attackEntityFromClient(Lnet/minecraft/util/math/RayTraceResult;Lnet/minecraft/entity/player/EntityPlayer;)V"
+            ),
             remap = false
     )
-    private void everythingNunchaku_betterSurvivalModClientHandler_onClientTickSwingRLCombat(RayTraceResult mov, EntityPlayer player, Operation<Void> original){
+    private void everythingNunchaku_betterSurvivalModClientHandler_onClientTickSwingRLCombat(
+            RayTraceResult mov, EntityPlayer player, Operation<Void> original) {
+        if (!allowAttack(mov, player)) return;
         original.call(mov, player);
         player.swingArm(EnumHand.MAIN_HAND);
     }
 
     @WrapOperation(
             method = "onClientTick",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;attackEntity(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)V"),
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;attackEntity(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)V"
+            ),
             remap = false
     )
-    private void everythingNunchaku_betterSurvivalModClientHandler_onClientTickSwingVanilla(PlayerControllerMP instance, EntityPlayer player, Entity entityHit, Operation<Void> original){
+    private void everythingNunchaku_betterSurvivalModClientHandler_onClientTickSwingVanilla(
+            PlayerControllerMP instance, EntityPlayer player, Entity entityHit, Operation<Void> original) {
+        if (!(player.getHeldItemMainhand().getItem() instanceof ItemNunchaku)
+                && !NunchakuConfigProvider.shouldAttack(entityHit, player)) {
+            return;
+        }
         original.call(instance, player, entityHit);
         player.swingArm(EnumHand.MAIN_HAND);
     }
 
-    @Definition(id = "player", local = @Local(type = EntityPlayerSP.class))
-    @Expression("? != player")
-    @ModifyExpressionValue(
-            method = "onClientTick",
-            at = @At("MIXINEXTRAS:EXPRESSION"),
-            remap = false
-    )
-    private boolean everythingNunchaku_betterSurvivalModClientHandler_onClientTickShouldAttack(boolean original, @Local EntityPlayerSP player, @Local RayTraceResult mov){
-        if(player.getHeldItemMainhand().getItem() instanceof ItemNunchaku) return original;
-        else return original && NunchakuConfigProvider.shouldAttack(mov.entityHit, player);
+    private static boolean allowAttack(RayTraceResult mov, EntityPlayer player) {
+        if (player.getHeldItemMainhand().getItem() instanceof ItemNunchaku) {
+            return true;
+        }
+        return NunchakuConfigProvider.shouldAttack(mov.entityHit, player);
     }
 }
