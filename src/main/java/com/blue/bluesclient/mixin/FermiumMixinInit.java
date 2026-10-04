@@ -1,8 +1,11 @@
 package com.blue.bluesclient.mixin;
 
 import fermiumbooter.FermiumRegistryAPI;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.ForgeVersion;
+import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import org.spongepowered.asm.mixin.Mixins;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -14,6 +17,10 @@ public class FermiumMixinInit implements IFMLLoadingPlugin {
     public FermiumMixinInit() {
         FermiumRegistryAPI.enqueueMixin(false, "mixins.bluesclient.json");
         FermiumRegistryAPI.enqueueMixin(true, "mixins.bluesclient_late.json");
+
+        if (FMLLaunchHandler.isDeobfuscatedEnvironment()) {
+            FermiumRegistryAPI.enqueueMixin(false, "mixins.bluesclient.rlcombat_dev.json");
+        }
     }
 
     @Override
@@ -40,4 +47,6 @@ public class FermiumMixinInit implements IFMLLoadingPlugin {
     public String getAccessTransformerClass() {
         return null;
     }
+
+
 }

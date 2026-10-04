@@ -34,7 +34,7 @@ public abstract class OutgoingDamageDisplayHandler {
     }
 
     private static boolean ensureDisplayEnabled() {
-        if (!BCConfig.DamageDisplay.getBooleanValue()) {
+        if (!BCConfig.DamageDisplayAttack.getBooleanValue()) {
             resetCombo();
             return false;
         }

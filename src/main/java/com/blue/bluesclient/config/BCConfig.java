@@ -44,7 +44,10 @@ public class BCConfig implements IConfigHandler {
 
     public static final List<IConfigBase> VALUE;
     public static final ConfigBoolean AlwaysSneak = ofBoolean("常驻潜行专精", false, "让玩家的潜行专精一直生效，不需要常按，且仍旧可以自由移动与开箱");
-    public static final ConfigBoolean DamageDisplay = ofBoolean("伤害调试", false, "在左下角实时显示玩家受到的伤害来源与类型\n同时显示玩家的输出效果\n" +  TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
+    public static final ConfigBoolean AutoUnlockPlus = ofBoolean("自动开锁+", false,"使用世界种子强解开锁密码并自动一次性打开\n如果是服务器中，必须有种子才可解\n枚举法开锁请使用DebrisClient");
+    public static final ConfigString LockWorldSeed = ofString("开锁世界种子","","如果服务器中，输入种子才可以解出密码");
+    public static final ConfigBoolean DamageDisplayHurt = ofBoolean("伤害调试:受击",false,"在左下角实时显示玩家受到的伤害来源与类型，包括非<伤害>的血量变化\n" +  TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
+    public static final ConfigBoolean DamageDisplayAttack = ofBoolean("伤害调试:攻击",false,"在左下角实时显示玩家造成的伤害\n原始伤害：ForgeHooks.onLivingHurt 进入总线之前\n实际伤害：ForgeHooks.onLivingDamage 整次总线之后\n" +  TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
     public static final ConfigBoolean NoDamageFallOff = ofBoolean("禁用伤害衰减",false,"禁用德雷版本的伤害衰减系统\n"+TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
     public static final ConfigBoolean TileEntityEsp = ofBoolean("容器透视", false, "透视方块实体类型，可用于寄生虫大楼找箱子，只透视方块实体而不是所有方块是因为这样能大幅提高性能");
     public static final ConfigInteger TileEntityEspDistance = ofInteger("容器透视距离", 64, 1, 256);
@@ -56,6 +59,7 @@ public class BCConfig implements IConfigHandler {
     public static final ConfigBoolean RLCombatEntityBlacklist = ofBoolean("万物双截棍:攻击实体过滤", true, "副手攻击过滤实体\n这只会阻止双截棍方式的连击效果，单点右键导致的攻击由RLCombat自身管理");
     public static final ConfigBoolean RLCombatOffhandNunchaku = ofBoolean("万物双截棍:副手动画不依赖主手", false, "副手攻击动画例如双截棍的旋转也会生效");
     public static final ConfigBoolean FlightDebug = ofBoolean("飞行调试",false,"堪比飞行的药水指环Plus");
+    public static final ConfigBoolean MixinDebug = ofBoolean("调试",false,"别碰，测试一些没做完的半成品");
     public static final List<IConfigBase> LIST;
     public static final ConfigStringList TileEntityEspList = ofStringList("透视容器列表", ImmutableList.of("minecraft:chest"));
     public static final ConfigStringList NunchakuItemClassWhitelist = ofStringList(
@@ -94,7 +98,7 @@ public class BCConfig implements IConfigHandler {
     public static final ConfigBoolean WitherSpawnerEsp = ofBoolean("凋零刷怪笼警告", false, "透视警告凋零刷怪笼");
     public static final ConfigBoolean GorgonSpawnerEsp = ofBoolean("美杜莎刷怪笼警告", false, "透视警告美杜莎刷怪笼");
     public static final ConfigBoolean ElderGuardianSpawnerEsp = ofBoolean("远古守卫者刷怪笼警告", false, "透视警告远古守卫者刷怪笼");
-    public static final ConfigBoolean BlockFakeLibrarianTrade = ofBoolean("阻止伪人村民交互", false, "拦截与伪人村民右键导致的爆炸与debuff");
+    public static final ConfigBoolean BlockFakeLibrarianTrade = ofBoolean("阻止伪人村民交互", false, "拦截与伪人村民右键导致的爆炸与debuff\n高亮白袍村民请使用DebrisClient");
     public static final ConfigBoolean DisableIronSkinRenderer = ofBoolean("禁用玩家钢铁皮肤渲染效果", false,"这个效果太丑陋了\n不是我喜欢的效果，直接禁用");
     public static final ConfigBoolean DisableCompassHUD = ofBoolean("禁用指南针手持坐标HUD", false, "指南针拿着的时候很挡视野，例如1.5幸运的彩蛋物品\n这里将其禁用，因为直接看F3的坐标就行了");
     public static final ConfigBoolean NoHiddenFlag = ofBoolean("完全显示隐藏标签", false, "光标对准物品后按Shift，完全显示隐藏属性彩蛋物品的实际效果，以及潘多拉诅咒附魔\n对诅咒物品有奇效\n注：可能与DebrisClient的额外显示互相覆写");
@@ -105,7 +109,10 @@ public class BCConfig implements IConfigHandler {
     static {
         VALUE = ImmutableList.of(
                 AlwaysSneak,
-                DamageDisplay,
+                DamageDisplayHurt,
+                DamageDisplayAttack,
+                AutoUnlockPlus,
+                LockWorldSeed,
                 NoDamageFallOff,
                 TileEntityEsp,
                 TileEntityEspDistance,
@@ -116,7 +123,8 @@ public class BCConfig implements IConfigHandler {
                 RLCombatOffhand,
                 RLCombatEntityBlacklist,
                 RLCombatOffhandNunchaku,
-                FlightDebug
+                FlightDebug,
+                MixinDebug
         );
         LIST = ImmutableList.of(
                 TileEntityEspList,

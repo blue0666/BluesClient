@@ -26,7 +26,7 @@ public abstract class DataManagerWrapper_Mixin {
 
     @Inject(method = "set", at = @At("HEAD"), remap = true, require = 1)
     private void bluesclient$watchSetHealth(DataParameter<?> key, Object value, CallbackInfo ci) {
-        if (!BCConfig.DamageDisplay.getBooleanValue()) return;
+        if (!BCConfig.DamageDisplayHurt.getBooleanValue()) return;
         if (key != EntityLivingBase.HEALTH) return;
         if (player == null || player.world == null || player.world.isRemote) return;
         if (!(value instanceof Float)) return;

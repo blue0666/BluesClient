@@ -11,6 +11,7 @@
   "mixins": [
     "eaglemixins.DamageFalloffHandlerMixin",
     "firstaid.DataManagerWrapper_Mixin",
+    "somanyenchantments.EnchantmentCriticalStrikeMixin",
     "somanyenchantments.EnchantmentPandorasCurseMixin",
     "srparasites.BlockInfestedRubbleMixin",
     "srparasites.ParasiteEventWorldSpreadMixin"
@@ -20,6 +21,7 @@
     "bettercombatmod.BetterSurvivalHandler_Mixin",
     "bettercombatmod.EventHandlersClient_Invoker",
     "dshuds.CompassHUDMixin",
+    "locks.LockPickingGuiMixin",
     "mujmajnkraftsbettersurvival.ItemNunchaku_Mixin",
     "mujmajnkraftsbettersurvival.ModClientHandler_Mixin",
     "rustic.LayerIronSkinMixin",

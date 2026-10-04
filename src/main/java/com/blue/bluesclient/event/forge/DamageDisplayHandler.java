@@ -24,7 +24,7 @@ public class DamageDisplayHandler {
 
     private static boolean shownActualThisHit = false;
     private static float lastRawAmount = 0.0F;
-    private static float lastRemainingHp = 0.0F; // 受伤前大约还能扣多少
+    private static float lastRemainingHp = 0.0F;
     private static String lastType = "unknown";
     private static String lastFrom = "-";
 
@@ -36,7 +36,6 @@ public class DamageDisplayHandler {
         player.sendMessage(new TextComponentString(msg));
     }
 
-    /** 受伤前各部位血量合计；失败则退回 getHealth() */
     private static float sumPartHealth(EntityPlayer player) {
         try {
             AbstractPlayerDamageModel model =
@@ -61,11 +60,11 @@ public class DamageDisplayHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingHurt(LivingHurtEvent event) {
-        if (!BCConfig.DamageDisplay.getBooleanValue()) return;
+        if (!BCConfig.DamageDisplayHurt.getBooleanValue()) return;
         if (!(event.getEntityLiving() instanceof EntityPlayer)) return;
         EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
-        // 服务器中不生效，因为伤害在服务端计算
+        // 服务器中不生效，因为伤害归服务端计算，客户端拿不到
         if (player.world.isRemote) return;
         if (!isLocalPlayer(player)) return;
 
@@ -98,7 +97,7 @@ public class DamageDisplayHandler {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onFirstAidLivingDamage(FirstAidLivingDamageEvent event) {
-        if (!BCConfig.DamageDisplay.getBooleanValue()) return;
+        if (!BCConfig.DamageDisplayHurt.getBooleanValue()) return;
 
         EntityPlayer player = event.getEntityPlayer();
         if (player.world.isRemote) return;
@@ -136,14 +135,13 @@ public class DamageDisplayHandler {
 
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
-        if (!BCConfig.DamageDisplay.getBooleanValue()) return;
+        if (!BCConfig.DamageDisplayHurt.getBooleanValue()) return;
         if (!(event.getEntityLiving() instanceof EntityPlayer)) return;
         EntityPlayer player = (EntityPlayer) event.getEntityLiving();
         if (player.world.isRemote) return;
         if (!isLocalPlayer(player)) return;
         if (shownActualThisHit) return;
 
-        // 实际 ≈ min(原始, 受伤前剩余)；溢出部分扣不进去
         float actual = Math.min(lastRawAmount, lastRemainingHp);
         if (actual < 0.0F) actual = 0.0F;
 

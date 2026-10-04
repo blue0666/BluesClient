@@ -1,10 +1,7 @@
 package com.blue.bluesclient.config;
 
 import com.google.common.collect.ImmutableList;
-import fi.dy.masa.malilib.config.options.ConfigBoolean;
-import fi.dy.masa.malilib.config.options.ConfigHotkey;
-import fi.dy.masa.malilib.config.options.ConfigInteger;
-import fi.dy.masa.malilib.config.options.ConfigStringList;
+import fi.dy.masa.malilib.config.options.*;
 import fi.dy.masa.malilib.hotkeys.IHotkeyCallback;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.InfoUtils;
@@ -12,22 +9,31 @@ import fi.dy.masa.malilib.util.InfoUtils;
 import java.util.function.BooleanSupplier;
 
 public class ConfigFactory {
-    private static final String DEFAULT_COMMENT="No comment";
-    private static final String PRETTY_NAME="No further comment";
-    public static ConfigBoolean ofBoolean(String name){
-        return new ConfigBoolean(name,false,DEFAULT_COMMENT);
+    private static final String DEFAULT_COMMENT = "No comment";
+    private static final String PRETTY_NAME = "No further comment";
+
+    public static ConfigBoolean ofBoolean(String name) {
+        return new ConfigBoolean(name, false, DEFAULT_COMMENT);
     }
 
-    public static ConfigBoolean ofBoolean(String name,Boolean defaultValue){
-        return new ConfigBoolean(name,defaultValue,DEFAULT_COMMENT);
+    public static ConfigBoolean ofBoolean(String name, Boolean defaultValue) {
+        return new ConfigBoolean(name, defaultValue, DEFAULT_COMMENT);
     }
 
-    public static ConfigBoolean ofBoolean(String name,Boolean defaultValue,String comment){
-        return new ConfigBoolean(name,defaultValue,comment);
+    public static ConfigBoolean ofBoolean(String name, Boolean defaultValue, String comment) {
+        return new ConfigBoolean(name, defaultValue, comment);
     }
 
-    public static ConfigBoolean ofBoolean(String name,Boolean defaultValue,String comment,String prettyName){
-        return new ConfigBoolean(name,defaultValue,comment,prettyName);
+    public static ConfigBoolean ofBoolean(String name, Boolean defaultValue, String comment, String prettyName) {
+        return new ConfigBoolean(name, defaultValue, comment, prettyName);
+    }
+
+    public static ConfigString ofString(String name, String defaultValue) {
+        return new ConfigString(name, defaultValue, DEFAULT_COMMENT);
+    }
+
+    public static ConfigString ofString(String name, String defaultValue, String comment) {
+        return new ConfigString(name, defaultValue, comment);
     }
 
     public static ConfigStringList ofStringList(String name, ImmutableList<String> defaultValue) {
