@@ -19,6 +19,7 @@
   "server": [],
   "client": [
     "bettercombatmod.BetterSurvivalHandler_Mixin",
+    "bettercombatmod.BetterSurvivalHandler_MixinLegacy",
     "bettercombatmod.EventHandlersClient_Invoker",
     "dshuds.CompassHUDMixin",
     "locks.LockPickingGuiMixin",

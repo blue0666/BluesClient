@@ -17,7 +17,7 @@ public class LateMixinConfig implements IMixinConfigPlugin {
     @Override
     public String getRefMapperConfig() { return null; }
 
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
@@ -48,6 +48,12 @@ public class LateMixinConfig implements IMixinConfigPlugin {
             present = Loader.isModLoaded(modId) || FermiumRegistryAPI.isModPresent(modId);
         } catch (Throwable ignored) { }
         if (!present) return false;
+        if (mixinClassName.endsWith("bettercombatmod.BetterSurvivalHandler_Mixin")) {
+            return ModReference.hasRlCombatServerConfig();
+        }
+        if (mixinClassName.endsWith("bettercombatmod.BetterSurvivalHandler_MixinLegacy")) {
+            return !ModReference.hasRlCombatServerConfig();
+        }
         if ("srparasites".equals(modId)) {
             return ModReference.isSrpBelow110();
         }

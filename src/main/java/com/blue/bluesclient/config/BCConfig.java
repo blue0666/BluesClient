@@ -1,6 +1,7 @@
 package com.blue.bluesclient.config;
 
 import com.blue.bluesclient.BluesClient;
+import com.blue.bluesclient.feat.everythingnunchaku.NunchakuConfigProvider;
 import com.google.common.collect.ImmutableList;
 import fi.dy.masa.malilib.config.IConfigHandler;
 import fi.dy.masa.malilib.config.options.*;
@@ -16,6 +17,12 @@ public class BCConfig implements IConfigHandler {
     private static final BCConfig Instance = new BCConfig();
 
     private BCConfig() {
+    }
+
+    @Override
+    public void save() {
+        IConfigHandler.super.save();
+        NunchakuConfigProvider.initClientNunchakus();
     }
 
     public static BCConfig getInstance() {

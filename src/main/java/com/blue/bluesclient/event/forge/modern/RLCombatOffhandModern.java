@@ -1,4 +1,4 @@
-package com.blue.bluesclient.event.forge;
+package com.blue.bluesclient.event.forge.modern;
 
 import bettercombat.mod.capability.CapabilityOffhandCooldown;
 import bettercombat.mod.client.handler.EventHandlersClient;
@@ -24,8 +24,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+
 //copied from Mod EverythingNunchaku
-public abstract class RLCombatHandler {
+public abstract class RLCombatOffhandModern {
     @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (!BCConfig.EverythingNunchaku.getBooleanValue()) return;

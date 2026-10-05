@@ -2,7 +2,8 @@ package com.blue.bluesclient;
 
 import com.blue.bluesclient.event.forge.DamageDisplayHandler;
 import com.blue.bluesclient.event.forge.OutgoingDamageDisplayHandler;
-import com.blue.bluesclient.event.forge.RLCombatHandler;
+import com.blue.bluesclient.event.forge.legacy.RLCombatOffhandLegacy;
+import com.blue.bluesclient.event.forge.modern.RLCombatOffhandModern;
 import com.blue.bluesclient.event.malilib.InitListener;
 import com.blue.bluesclient.feat.allowflight.FlightHandler;
 import com.blue.bluesclient.feat.everythingnunchaku.NunchakuConfigProvider;
@@ -39,8 +40,12 @@ public class BluesClient
     {
         logger = event.getModLog();
         MinecraftForge.EVENT_BUS.register(TooltipListener.class);
-        if(Loader.isModLoaded(ModReference.BETTERCOMBATMOD)){
-            MinecraftForge.EVENT_BUS.register(RLCombatHandler.class);
+        if (Loader.isModLoaded(ModReference.BETTERCOMBATMOD)) {
+            if (ModReference.hasRlCombatServerConfig()) {
+                MinecraftForge.EVENT_BUS.register(RLCombatOffhandModern.class);
+            } else {
+                MinecraftForge.EVENT_BUS.register(RLCombatOffhandLegacy.class);
+            }
         }
         if (Loader.isModLoaded(ModReference.FIRSTAID)) {
             MinecraftForge.EVENT_BUS.register(DamageDisplayHandler.class);

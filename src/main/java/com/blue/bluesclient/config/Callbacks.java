@@ -1,6 +1,7 @@
 package com.blue.bluesclient.config;
 
 import com.blue.bluesclient.config.gui.BCConfigScreen;
+import com.blue.bluesclient.feat.everythingnunchaku.NunchakuConfigProvider;
 import fi.dy.masa.malilib.util.InfoUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.CPacketEntityAction;
@@ -58,5 +59,11 @@ public class Callbacks {
             if (mc.player == null || mc.playerController == null) return;
             mc.playerController.setPlayerCapabilities(mc.player);
         });
+
+        Runnable reload = NunchakuConfigProvider::initClientNunchakus;
+        BCConfig.NunchakuItemIDWhitelist.setValueChangeCallback(c -> reload.run());
+        BCConfig.NunchakuItemIDBlacklist.setValueChangeCallback(c -> reload.run());
+        BCConfig.NunchakuEntityBlacklist.setValueChangeCallback(c -> reload.run());
+        BCConfig.NunchakuItemClassWhitelist.setValueChangeCallback(c -> reload.run());
     }
 }

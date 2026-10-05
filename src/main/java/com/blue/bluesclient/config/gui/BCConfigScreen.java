@@ -41,9 +41,7 @@ public class BCConfigScreen extends GuiConfigsBase{
 
     private static ImmutableList<IConfigBase> buildValueTab() {
         List<IConfigBase> list = new ArrayList<>(BCConfig.VALUE);
-        if (!hasRlCombatServerConfig()) {
-            list.remove(BCConfig.EverythingNunchaku);
-            list.remove(BCConfig.EverythingNunchakuAllowAll);
+        if (false/*!hasRlCombatServerConfig()*/) {
             list.remove(BCConfig.RLCombatOffhand);
             list.remove(BCConfig.RLCombatEntityBlacklist);
             list.remove(BCConfig.RLCombatOffhandNunchaku);

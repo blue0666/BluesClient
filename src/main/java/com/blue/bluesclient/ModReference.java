@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.versioning.ArtifactVersion;
 import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion;
 
 public class ModReference {
-    public static final boolean VanillaPlus = true;
+    public static final boolean VanillaPlus = false;
     public static String RUSTIC = "rustic";
     public static String DSHUDS = "dshuds";
     public static String FIRSTAID = "firstaid";
@@ -29,8 +29,7 @@ public class ModReference {
             return rlCombatHasServerConfig = false;
         }
         try {
-            //原版RLC的RLcombat版本不一样，不能一起兼容，需要禁用删除万物双截棍
-            Object ignored = bettercombat.mod.util.ConfigurationHandler.server;
+            Class.forName("bettercombat.mod.util.ConfigurationHandler").getField("server");
             return rlCombatHasServerConfig = true;
         } catch (Throwable t) {
             return rlCombatHasServerConfig = false;

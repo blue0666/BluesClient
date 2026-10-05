@@ -1,0 +1,358 @@
+RAW JAVAP DUMP
+
+
+========== OLD ConfigurationHandler ==========
+Compiled from "ConfigurationHandler.java"
+public class bettercombat.mod.util.ConfigurationHandler {
+  public static net.minecraftforge.common.config.Configuration config;
+  private static final int VERSION;
+  public static boolean requireFullEnergy;
+  public static boolean hitSound;
+  public static boolean critSound;
+  public static boolean moreSprint;
+  public static boolean moreSweep;
+  public static boolean randomCrits;
+  public static boolean weakerOffhand;
+  public static boolean enableOffHandAttack;
+  public static float offHandEfficiency;
+  public static float critChance;
+  public static boolean requireEnergyToRandomCrit;
+  public static boolean requireEnergyToJumpCrit;
+  public static float distanceToJumpCrit;
+  private static java.lang.String[] itemClassWhitelist;
+  private static java.lang.String[] itemInstWhitelist;
+  private static java.lang.String[] entityBlacklist;
+  private static final java.lang.String[] ICW_DEF;
+  private static final java.lang.String[] IIW_DEF;
+  private static final java.lang.String[] EB_DEF;
+  private static java.lang.Class<?>[] itemClassWhiteArray;
+  private static net.minecraft.item.Item[] itemInstWhiteArray;
+  private static java.lang.Class<?>[] entityBlackArray;
+  public bettercombat.mod.util.ConfigurationHandler();
+  public static void init(java.io.File);
+  private static void loadConfiguration();
+  public static void createInstLists();
+  public static boolean isItemAttackUsable(net.minecraft.item.Item);
+  public static boolean isEntityAttackable(net.minecraft.entity.Entity);
+  public void onConfigurationChangedEvent(net.minecraftforge.fml.client.event.ConfigChangedEvent$OnConfigChangedEvent);
+  private static boolean lambda$isEntityAttackable$2(net.minecraft.entity.Entity, java.lang.Class);
+  private static boolean lambda$isItemAttackUsable$1(net.minecraft.item.Item, java.lang.Class);
+  private static boolean lambda$isItemAttackUsable$0(net.minecraft.item.Item, net.minecraft.item.Item);
+  static {};
+}
+
+
+========== NEW ConfigurationHandler ==========
+Compiled from "ConfigurationHandler.java"
+public class bettercombat.mod.util.ConfigurationHandler {
+  public static final bettercombat.mod.util.ConfigurationHandler$ServerConfig server;
+  public static final bettercombat.mod.util.ConfigurationHandler$ClientConfig client;
+  private static java.lang.Class<?>[] itemClassWhiteArray;
+  private static net.minecraft.item.Item[] itemInstWhiteArray;
+  private static net.minecraft.item.Item[] itemInstBlackArray;
+  private static java.lang.Class<?>[] entityBlackArray;
+  private static java.util.Map<java.lang.Class<?>, bettercombat.mod.client.animation.util.CustomWeapon> weaponClassMap;
+  private static java.util.Map<net.minecraft.item.Item, bettercombat.mod.client.animation.util.CustomWeapon> weaponInstMap;
+  public bettercombat.mod.util.ConfigurationHandler();
+  public static void initItemListCache();
+  public static void initEntityListCache();
+  public static boolean isItemAttackUsableOffhand(net.minecraft.item.Item);
+  public static boolean isEntityAttackableOffhand(net.minecraft.entity.Entity);
+  public static void initRenderCache();
+  public static bettercombat.mod.client.animation.util.CustomWeapon getCustomWeapon(net.minecraft.item.Item);
+  static {};
+}
+
+
+========== NEW ConfigurationHandler.ServerConfig ==========
+Compiled from "ConfigurationHandler.java"
+public class bettercombat.mod.util.ConfigurationHandler$ServerConfig {
+  public boolean enableOffhandAttack;
+  public boolean weakerOffhand;
+  public float offhandEfficiency;
+  public boolean requireFullEnergy;
+  public boolean requireEnergyToRandomCrit;
+  public boolean requireEnergyToJumpCrit;
+  public boolean randomCrits;
+  public float critChance;
+  public float distanceToJumpCrit;
+  public boolean dontInterruptSprint;
+  public boolean swingThroughPassableBlocks;
+  public boolean additionalHitSound;
+  public boolean additionalCritSound;
+  public java.lang.String[] offhandItemClassWhitelist;
+  public java.lang.String[] offhandItemIDWhitelist;
+  public java.lang.String[] offhandItemIDBlacklist;
+  public java.lang.String[] entityBlacklist;
+  public boolean enableMixinCompatFallback;
+  public boolean logConfigListWarnings;
+  public bettercombat.mod.util.ConfigurationHandler$ServerConfig();
+}
+
+
+========== NEW ConfigurationHandler.ClientConfig ==========
+Compiled from "ConfigurationHandler.java"
+public class bettercombat.mod.util.ConfigurationHandler$ClientConfig {
+  public boolean customWeaponAttackAnimations;
+  public boolean customWeaponMiningAnimations;
+  public boolean customWeaponSwingSounds;
+  public boolean customWeaponEquipSounds;
+  public boolean customWeaponSheatheSounds;
+  public boolean customPunchSwingSounds;
+  public boolean customWeaponSoundsMono;
+  public boolean moreSweepParticles;
+  public boolean renderAttackReadyIcon;
+  public float breathingAnimationSpeed;
+  public float breathingAnimationIntensity;
+  public float tooCloseAnimationDistance;
+  public float tooCloseAnimationIntensity;
+  public boolean tooCloseAnimationEntities;
+  public boolean tooCloseAnimationBlocks;
+  public boolean breathingTooCloseAnimationAllItems;
+  public boolean sprintingWeaponTilt;
+  public float cameraPitchSwing;
+  public float cameraYawSwing;
+  public java.lang.String[] weaponClassCustomWeapons;
+  public java.lang.String[] weaponIDCustomWeapons;
+  public float weaponSwingVolumeMult;
+  public float weaponEquipSheatheVolumeMult;
+  public java.lang.String[] nonMetallicSoundWordList;
+  public bettercombat.mod.util.ConfigurationHandler$ClientConfig();
+}
+
+
+========== OLD EventHandlersClient ==========
+Compiled from "EventHandlersClient.java"
+public class bettercombat.mod.client.handler.EventHandlersClient {
+  public static final bettercombat.mod.client.handler.EventHandlersClient INSTANCE;
+  private final bettercombat.mod.client.gui.GuiCrosshairsBC gc;
+  private bettercombat.mod.client.handler.EventHandlersClient();
+  public void onMouseEvent(net.minecraftforge.client.event.MouseEvent);
+  public void onRenderGameOverlay(net.minecraftforge.client.event.RenderGameOverlayEvent$Pre);
+  public static void onMouseLeftClick(net.minecraftforge.client.event.MouseEvent);
+  public static void onMouseRightClick();
+  private static boolean shouldAttack(net.minecraft.entity.Entity, net.minecraft.entity.player.EntityPlayer);
+  static {};
+}
+
+
+========== NEW EventHandlersClient ==========
+Compiled from "EventHandlersClient.java"
+public class bettercombat.mod.client.handler.EventHandlersClient {
+  private static final bettercombat.mod.client.gui.GuiCrosshairsBC BCCROSSHAIR;
+  public static net.minecraft.item.ItemStack itemStackMainhand;
+  public static net.minecraft.item.ItemStack itemStackOffhand;
+  public static final bettercombat.mod.client.animation.util.BetterCombatHand betterCombatMainhand;
+  public static final bettercombat.mod.client.animation.util.BetterCombatHand betterCombatOffhand;
+  public static float cachedOffhandCooldownPeriod;
+  public bettercombat.mod.client.handler.EventHandlersClient();
+  public void onMouseEvent(net.minecraftforge.client.event.MouseEvent);
+  public void onRenderGameOverlay(net.minecraftforge.client.event.RenderGameOverlayEvent$Pre);
+  public static void onMouseLeftClick(net.minecraftforge.client.event.MouseEvent);
+  public static void onMouseRightClick();
+  private static boolean shouldAttack(net.minecraft.entity.Entity, net.minecraft.entity.player.EntityPlayer);
+  public void tickEventLow(net.minecraftforge.fml.common.gameevent.TickEvent$ClientTickEvent);
+  public static void checkItemstacksChanged();
+  public static void checkItemstackChangedMainhand();
+  public static void checkItemstackChangedOffhand();
+  public static void resetMainhandAnimationCooldown(float);
+  public static void resetOffhandAnimationCooldown(float);
+  public static void mainhandSwingSound();
+  public static void offhandSwingSound();
+  private static void mainhandEquipSound();
+  private static void offhandEquipSound();
+  private static void mainhandSheatheSound();
+  private static void offhandSheatheSound();
+  static {};
+}
+
+
+========== OLD EventHandlers ==========
+Compiled from "EventHandlers.java"
+public class bettercombat.mod.handler.EventHandlers {
+  public static final bettercombat.mod.handler.EventHandlers INSTANCE;
+  public static final net.minecraftforge.common.capabilities.Capability<bettercombat.mod.combat.IOffHandAttack> OFFHAND_CAP;
+  public static final net.minecraftforge.common.capabilities.Capability<bettercombat.mod.combat.ISecondHurtTimer> SECONDHURTTIMER_CAP;
+  public static final net.minecraftforge.common.capabilities.Capability<bettercombat.mod.capability.CapabilityOffhandCooldown> TUTO_CAP;
+  private bettercombat.mod.handler.EventHandlers();
+  public void onAttack(net.minecraftforge.event.entity.player.AttackEntityEvent);
+  public void onLivingUpdate(net.minecraftforge.event.entity.living.LivingEvent$LivingUpdateEvent);
+  public void onEntityConstruct(net.minecraftforge.event.AttachCapabilitiesEvent);
+  static {};
+}
+
+
+========== NEW EventHandlers ==========
+Compiled from "EventHandlers.java"
+public class bettercombat.mod.handler.EventHandlers {
+  public static final net.minecraftforge.common.capabilities.Capability<bettercombat.mod.capability.CapabilityOffhandHurtResistance> OFFHAND_HURTRESISTANCE;
+  public static final net.minecraftforge.common.capabilities.Capability<bettercombat.mod.capability.CapabilityOffhandCooldown> OFFHAND_COOLDOWN;
+  public bettercombat.mod.handler.EventHandlers();
+  public void onAttack(net.minecraftforge.event.entity.player.AttackEntityEvent);
+  public void onLivingUpdate(net.minecraftforge.event.entity.living.LivingEvent$LivingUpdateEvent);
+  public void onEntityConstruct(net.minecraftforge.event.AttachCapabilitiesEvent<net.minecraft.entity.Entity>);
+  static {};
+}
+
+
+========== OLD Helpers ==========
+Compiled from "Helpers.java"
+public final class bettercombat.mod.util.Helpers {
+  private bettercombat.mod.util.Helpers();
+  public static <T> void execNullable(T, java.util.function.Consumer<T>);
+  public static <T, R> R execNullable(T, java.util.function.Function<T, R>, R);
+  public static void clearOldModifiers(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack);
+  public static void addNewModifiers(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack);
+  public static float getOffhandDamage(net.minecraft.entity.player.EntityPlayer);
+  public static int getOffhandCooldown(net.minecraft.entity.player.EntityPlayer);
+  public static void attackTargetEntityItem(net.minecraft.entity.player.EntityPlayer, net.minecraft.entity.Entity, boolean, double, double, double);
+  public static <T> T getNull();
+  private static void lambda$attackTargetEntityItem$1(net.minecraft.entity.EntityLivingBase, net.minecraft.util.DamageSource, float, bettercombat.mod.combat.ISecondHurtTimer);
+  private static java.lang.Boolean lambda$attackTargetEntityItem$0(net.minecraft.entity.Entity, net.minecraft.util.DamageSource, float, bettercombat.mod.combat.ISecondHurtTimer);
+}
+
+
+========== NEW Helpers ==========
+Compiled from "Helpers.java"
+public final class bettercombat.mod.util.Helpers {
+  public bettercombat.mod.util.Helpers();
+  public static <T> void execNullable(T, java.util.function.Consumer<T>);
+  public static <T, R> R execNullable(T, java.util.function.Function<T, R>, R);
+  public static void clearOldModifiers(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack, boolean, boolean, boolean);
+  public static void addNewModifiers(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack, boolean, boolean, boolean);
+  public static float getOffhandDamage(net.minecraft.entity.player.EntityPlayer);
+  public static boolean isHandActive(net.minecraft.entity.player.EntityPlayer, net.minecraft.util.EnumHand);
+  public static void attackTargetEntityItem(net.minecraft.entity.player.EntityPlayer, net.minecraft.entity.Entity, boolean, double, double, double);
+  public static <T> T getNull();
+  private static void lambda$attackTargetEntityItem$1(net.minecraft.entity.EntityLivingBase, net.minecraft.util.DamageSource, float, bettercombat.mod.capability.CapabilityOffhandHurtResistance);
+  private static java.lang.Boolean lambda$attackTargetEntityItem$0(net.minecraft.entity.Entity, net.minecraft.util.DamageSource, float, bettercombat.mod.capability.CapabilityOffhandHurtResistance);
+}
+
+
+========== OLD CapabilityOffhandCooldown ==========
+Compiled from "CapabilityOffhandCooldown.java"
+public class bettercombat.mod.capability.CapabilityOffhandCooldown implements net.minecraftforge.common.capabilities.ICapabilityProvider, net.minecraftforge.common.util.INBTSerializable<net.minecraft.nbt.NBTTagCompound> {
+  private int offhandCooldown;
+  private int offhandBeginningCooldown;
+  private net.minecraft.entity.player.EntityPlayer player;
+  public boolean hasCapability(net.minecraftforge.common.capabilities.Capability<?>, net.minecraft.util.EnumFacing);
+  public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.util.EnumFacing);
+  public net.minecraft.nbt.NBTTagCompound serializeNBT();
+  public void deserializeNBT(net.minecraft.nbt.NBTTagCompound);
+  public void tick();
+  public void setOffhandCooldown(int);
+  public int getOffhandCooldown();
+  public void setOffhandBeginningCooldown(int);
+  public int getOffhandBeginningCooldown();
+  public static void register();
+  public bettercombat.mod.capability.CapabilityOffhandCooldown(net.minecraft.entity.player.EntityPlayer);
+  public void sync();
+  public void deserializeNBT(net.minecraft.nbt.NBTBase);
+  public net.minecraft.nbt.NBTBase serializeNBT();
+}
+
+
+========== NEW CapabilityOffhandCooldown ==========
+Compiled from "CapabilityOffhandCooldown.java"
+public class bettercombat.mod.capability.CapabilityOffhandCooldown implements net.minecraftforge.common.capabilities.ICapabilityProvider {
+  private int ticksSinceLastSwing;
+  private final net.minecraft.entity.player.EntityPlayer player;
+  public bettercombat.mod.capability.CapabilityOffhandCooldown(net.minecraft.entity.player.EntityPlayer);
+  public void sync();
+  public boolean hasCapability(net.minecraftforge.common.capabilities.Capability<?>, net.minecraft.util.EnumFacing);
+  public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.util.EnumFacing);
+  public void tick();
+  public void resetTicksSinceLastSwing();
+  public int getTicksSinceLastSwing();
+  public static void register();
+}
+
+
+========== OLD BetterSurvivalHandler util ==========
+Compiled from "BetterSurvivalHandler.java"
+public abstract class bettercombat.mod.util.BetterSurvivalHandler {
+  public bettercombat.mod.util.BetterSurvivalHandler();
+  public static boolean isNunchaku(net.minecraft.item.Item);
+}
+
+
+========== NEW BetterSurvivalHandler compat ==========
+Compiled from "BetterSurvivalHandler.java"
+public abstract class bettercombat.mod.compat.BetterSurvivalHandler {
+  public bettercombat.mod.compat.BetterSurvivalHandler();
+  public static boolean isNunchaku(net.minecraft.item.Item);
+}
+
+
+========== NEW ReachFixUtil ==========
+Compiled from "ReachFixUtil.java"
+public abstract class bettercombat.mod.util.ReachFixUtil {
+  public bettercombat.mod.util.ReachFixUtil();
+  public static net.minecraft.util.math.RayTraceResult pointedObject(net.minecraft.entity.Entity, net.minecraft.entity.player.EntityPlayer, net.minecraft.util.EnumHand, net.minecraft.world.World, float);
+  public static net.minecraft.util.math.RayTraceResult pointedObjectIgnorePassable(net.minecraft.entity.Entity, net.minecraft.entity.player.EntityPlayer, net.minecraft.util.EnumHand, net.minecraft.world.World, float);
+  private static net.minecraft.util.math.RayTraceResult getPointedEntity(net.minecraft.entity.Entity, net.minecraft.world.World, net.minecraft.util.math.Vec3d, net.minecraft.util.math.Vec3d, float);
+  private static boolean isNullOrMiss(net.minecraft.util.math.RayTraceResult);
+  private static boolean lambda$getPointedEntity$0(net.minecraft.entity.Entity);
+}
+
+
+========== OLD ReachFixUtil ==========
+javap : 错误: 找不到类: bettercombat.mod.util.ReachFixUtil
+所在位置 C:\Users\hp\AppData\Local\Temp\ps-script-869bf962-bc46-4bc2-aa3f-776d6a47b759.ps1:108 字符: 8
++   $r = javap -p -classpath $cp $cls 2>&1 | Out-String
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (错误: 找不到类: bette...il.ReachFixUtil:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+
+========== BS RLCombatCompat ==========
+Compiled from "RLCombatCompat.java"
+public abstract class com.mujmajnkraft.bettersurvival.integration.RLCombatCompat {
+  public com.mujmajnkraft.bettersurvival.integration.RLCombatCompat();
+  public static void attackEntityFromClient(net.minecraft.util.math.RayTraceResult, net.minecraft.entity.player.EntityPlayer);
+}
+
+
+========== BS ModClientHandler public ==========
+Compiled from "ModClientHandler.java"
+public class com.mujmajnkraft.bettersurvival.client.ModClientHandler {
+  public com.mujmajnkraft.bettersurvival.client.ModClientHandler();
+  public void onClientTick(net.minecraftforge.fml.common.gameevent.TickEvent$ClientTickEvent);
+  public void onTooltipRender(net.minecraftforge.event.entity.player.ItemTooltipEvent);
+  public void onEvent(net.minecraftforge.client.event.FOVUpdateEvent);
+}
+
+
+========== BS ItemNunchaku ==========
+Compiled from "ItemNunchaku.java"
+public class com.mujmajnkraft.bettersurvival.items.ItemNunchaku extends com.mujmajnkraft.bettersurvival.items.ItemCustomWeapon {
+  public com.mujmajnkraft.bettersurvival.items.ItemNunchaku(net.minecraft.item.Item$ToolMaterial);
+  public boolean func_77644_a(net.minecraft.item.ItemStack, net.minecraft.entity.EntityLivingBase, net.minecraft.entity.EntityLivingBase);
+  public void func_77624_a(net.minecraft.item.ItemStack, net.minecraft.world.World, java.util.List<java.lang.String>, net.minecraft.client.util.ITooltipFlag);
+  public boolean onEntitySwing(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack);
+  public boolean onLeftClickEntity(net.minecraft.item.ItemStack, net.minecraft.entity.player.EntityPlayer, net.minecraft.entity.Entity);
+}
+
+
+========== BS ItemNunchaku$1 ==========
+Compiled from "ItemNunchaku.java"
+class com.mujmajnkraft.bettersurvival.items.ItemNunchaku$1 implements net.minecraft.item.IItemPropertyGetter {
+  final com.mujmajnkraft.bettersurvival.items.ItemNunchaku this$0;
+  com.mujmajnkraft.bettersurvival.items.ItemNunchaku$1(com.mujmajnkraft.bettersurvival.items.ItemNunchaku);
+  public float func_185085_a(net.minecraft.item.ItemStack, net.minecraft.world.World, net.minecraft.entity.EntityLivingBase);
+}
+
+
+========== BS INunchakuCombo ==========
+Compiled from "INunchakuCombo.java"
+public interface com.mujmajnkraft.bettersurvival.capabilities.nunchakucombo.INunchakuCombo {
+  public abstract float getComboPower();
+  public abstract int getComboTime();
+  public abstract void setComboPower(float);
+  public abstract void countDown();
+  public abstract void setComboTime(int);
+  public abstract boolean isSpinning();
+  public abstract void setSpinning(boolean);
+}
+

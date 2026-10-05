@@ -1,0 +1,423 @@
+PS E:\TEMP\RlcraftMod\BluesClient2> javap -public -classpath legacy/RLCombat-1.12.2-2.0.8.jar bettercombat.mod.util.ConfigurationHandler
+Compiled from "ConfigurationHandler.java"
+public class bettercombat.mod.util.ConfigurationHandler {
+  public static net.minecraftforge.common.config.Configuration config;
+  public static boolean requireFullEnergy;
+  public static boolean hitSound;
+  public static boolean critSound;
+  public static boolean moreSprint;
+  public static boolean moreSweep;
+  public static boolean randomCrits;
+  public static boolean weakerOffhand;
+  public static boolean enableOffHandAttack;
+  public static float offHandEfficiency;
+  public static float critChance;
+  public static boolean requireEnergyToRandomCrit;
+  public static boolean requireEnergyToJumpCrit;
+  public static float distanceToJumpCrit;
+  public bettercombat.mod.util.ConfigurationHandler();
+  public static void init(java.io.File);
+  public static void createInstLists();
+  public static boolean isItemAttackUsable(net.minecraft.item.Item);
+  public static boolean isEntityAttackable(net.minecraft.entity.Entity);
+  public void onConfigurationChangedEvent(net.minecraftforge.fml.client.event.ConfigChangedEvent$OnConfigChangedEvent);
+}
+PS E:\TEMP\RlcraftMod\BluesClient2> javap -public -classpath legacy/RLCombat-1.12.2-2.0.8.jar bettercombat.mod.client.handler.EventHandlersClient
+Compiled from "EventHandlersClient.java"
+public class bettercombat.mod.client.handler.EventHandlersClient {
+  public static final bettercombat.mod.client.handler.EventHandlersClient INSTANCE;
+  public void onMouseEvent(net.minecraftforge.client.event.MouseEvent);
+  public void onRenderGameOverlay(net.minecraftforge.client.event.RenderGameOverlayEvent$Pre);
+  public static void onMouseLeftClick(net.minecraftforge.client.event.MouseEvent);
+  public static void onMouseRightClick();
+}
+PS E:\TEMP\RlcraftMod\BluesClient2> javap -public -classpath legacy/RLCombat-1.12.2-2.0.8.jar bettercombat.mod.compat.BetterSurvivalHandler
+错误: 找不到类: bettercombat.mod.compat.BetterSurvivalHandler
+PS E:\TEMP\RlcraftMod\BluesClient2> javap -c -p -classpath legacy/better_survival-1.5.3.jar com.mujmajnkraft.bettersurvival.client.ModClientHandler
+Compiled from "ModClientHandler.java"
+public class com.mujmajnkraft.bettersurvival.client.ModClientHandler {
+  public com.mujmajnkraft.bettersurvival.client.ModClientHandler();
+    Code:
+       0: aload_0
+       1: invokespecial #22                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void onClientTick(net.minecraftforge.fml.common.gameevent.TickEvent$ClientTickEvent);
+    Code:
+       0: invokestatic  #33                 // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+       3: astore_2
+       4: aload_2
+       5: invokevirtual #37                 // Method net/minecraft/client/Minecraft.func_175606_aa:()Lnet/minecraft/entity/Entity;
+       8: astore_3
+       9: aload_2
+      10: getfield      #41                 // Field net/minecraft/client/Minecraft.field_71439_g:Lnet/minecraft/client/entity/EntityPlayerSP;
+      13: astore        4
+      15: aload_2
+      16: getfield      #45                 // Field net/minecraft/client/Minecraft.field_71474_y:Lnet/minecraft/client/settings/GameSettings;
+      19: astore        5
+      21: aload         4
+      23: ifnull        249
+      26: aload_3
+      27: ifnull        249
+      30: aload         4
+      32: getstatic     #51                 // Field com/mujmajnkraft/bettersurvival/capabilities/nunchakucombo/NunchakuComboProvider.NUNCHAKUCOMBO_CAP:Lnet/minecraftforge/common/capabilities/Capability;
+      35: aconst_null
+      36: invokevirtual #57                 // Method net/minecraft/client/entity/EntityPlayerSP.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraft/util/EnumFacing;)Ljava/lang/Object;
+      39: checkcast     #59                 // class com/mujmajnkraft/bettersurvival/capabilities/nunchakucombo/INunchakuCombo
+      42: astore        6
+      44: aload         4
+      46: invokevirtual #63                 // Method net/minecraft/client/entity/EntityPlayerSP.func_184614_ca:()Lnet/minecraft/item/ItemStack;
+      49: invokevirtual #69                 // Method net/minecraft/item/ItemStack.func_77973_b:()Lnet/minecraft/item/Item;
+      52: instanceof    #71                 // class com/mujmajnkraft/bettersurvival/items/ItemNunchaku
+      55: ifeq          212
+      58: aload         4
+      60: invokevirtual #75                 // Method net/minecraft/client/entity/EntityPlayerSP.func_184838_M:()Z
+      63: ifne          212
+      66: aload         4
+      68: invokevirtual #78                 // Method net/minecraft/client/entity/EntityPlayerSP.func_184607_cu:()Lnet/minecraft/item/ItemStack;
+      71: getstatic     #82                 // Field net/minecraft/item/ItemStack.field_190927_a:Lnet/minecraft/item/ItemStack;
+      74: if_acmpne     212
+      77: aload         5
+      79: getfield      #88                 // Field net/minecraft/client/settings/GameSettings.field_74312_F:Lnet/minecraft/client/settings/KeyBinding;
+      82: invokevirtual #93                 // Method net/minecraft/client/settings/KeyBinding.func_151470_d:()Z
+      85: ifeq          212
+      88: aload         6
+      90: ifnull        125
+      93: aload         6
+      95: invokeinterface #96,  1           // InterfaceMethod com/mujmajnkraft/bettersurvival/capabilities/nunchakucombo/INunchakuCombo.isSpinning:()Z
+     100: ifne          125
+     103: getstatic     #102                // Field com/mujmajnkraft/bettersurvival/packet/BetterSurvivalPacketHandler.NETWORK:Lnet/minecraftforge/fml/common/network/simpleimpl/SimpleNetworkWrapper;
+     106: new           #104                // class com/mujmajnkraft/bettersurvival/packet/MessageNunchakuSpinClient
+     109: dup
+     110: iconst_1
+     111: invokespecial #107                // Method com/mujmajnkraft/bettersurvival/packet/MessageNunchakuSpinClient."<init>":(Z)V
+     114: invokevirtual #113                // Method net/minecraftforge/fml/common/network/simpleimpl/SimpleNetworkWrapper.sendToServer:(Lnet/minecraftforge/fml/common/network/simpleimpl/IMessage;)V
+     117: aload         6
+     119: iconst_1
+     120: invokeinterface #116,  2          // InterfaceMethod com/mujmajnkraft/bettersurvival/capabilities/nunchakucombo/INunchakuCombo.setSpinning:(Z)V
+     125: aload         4
+     127: ldc           #119                // float 0.5f
+     129: invokevirtual #123                // Method net/minecraft/client/entity/EntityPlayerSP.func_184825_o:(F)F
+     132: fconst_1
+     133: fcmpl
+     134: iflt          249
+     137: aload_3
+     138: aload         4
+     140: getstatic     #129                // Field net/minecraft/util/EnumHand.MAIN_HAND:Lnet/minecraft/util/EnumHand;
+     143: aload_2
+     144: getfield      #133                // Field net/minecraft/client/Minecraft.field_71441_e:Lnet/minecraft/client/multiplayer/WorldClient;
+     147: aload_2
+     148: invokevirtual #137                // Method net/minecraft/client/Minecraft.func_184121_ak:()F
+     151: invokestatic  #143                // Method meldexun/reachfix/hook/client/EntityRendererHook.pointedObject:(Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/util/EnumHand;Lnet/minecraft/world/World;F)Lnet/minecraft/util/math/RayTraceResult;
+     154: astore        7
+     156: aload         7
+     158: ifnull        209
+     161: aload         7
+     163: getfield      #149                // Field net/minecraft/util/math/RayTraceResult.field_72308_g:Lnet/minecraft/entity/Entity;
+     166: ifnull        209
+     169: aload         7
+     171: getfield      #149                // Field net/minecraft/util/math/RayTraceResult.field_72308_g:Lnet/minecraft/entity/Entity;
+     174: aload         4
+     176: if_acmpeq     209
+     179: getstatic     #155                // Field com/mujmajnkraft/bettersurvival/BetterSurvival.isRLCombatLoaded:Z
+     182: ifeq          195
+     185: aload         7
+     187: aload         4
+     189: invokestatic  #161                // Method com/mujmajnkraft/bettersurvival/integration/RLCombatCompat.attackEntityFromClient:(Lnet/minecraft/util/math/RayTraceResult;Lnet/minecraft/entity/player/EntityPlayer;)V
+     192: goto          209
+     195: aload_2
+     196: getfield      #165                // Field net/minecraft/client/Minecraft.field_71442_b:Lnet/minecraft/client/multiplayer/PlayerControllerMP;
+     199: aload         4
+     201: aload         7
+     203: getfield      #149                // Field net/minecraft/util/math/RayTraceResult.field_72308_g:Lnet/minecraft/entity/Entity;
+     206: invokevirtual #171                // Method net/minecraft/client/multiplayer/PlayerControllerMP.func_78764_a:(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)V
+     209: goto          249
+     212: aload         6
+     214: ifnull        249
+     217: aload         6
+     219: invokeinterface #96,  1           // InterfaceMethod com/mujmajnkraft/bettersurvival/capabilities/nunchakucombo/INunchakuCombo.isSpinning:()Z
+     224: ifeq          249
+     227: getstatic     #102                // Field com/mujmajnkraft/bettersurvival/packet/BetterSurvivalPacketHandler.NETWORK:Lnet/minecraftforge/fml/common/network/simpleimpl/SimpleNetworkWrapper;
+     230: new           #104                // class com/mujmajnkraft/bettersurvival/packet/MessageNunchakuSpinClient
+     233: dup
+     234: iconst_0
+     235: invokespecial #107                // Method com/mujmajnkraft/bettersurvival/packet/MessageNunchakuSpinClient."<init>":(Z)V
+     238: invokevirtual #113                // Method net/minecraftforge/fml/common/network/simpleimpl/SimpleNetworkWrapper.sendToServer:(Lnet/minecraftforge/fml/common/network/simpleimpl/IMessage;)V
+     241: aload         6
+     243: iconst_0
+     244: invokeinterface #116,  2          // InterfaceMethod com/mujmajnkraft/bettersurvival/capabilities/nunchakucombo/INunchakuCombo.setSpinning:(Z)V
+     249: return
+
+  public void onTooltipRender(net.minecraftforge.event.entity.player.ItemTooltipEvent);
+    Code:
+       0: aload_1
+       1: invokevirtual #192                // Method net/minecraftforge/event/entity/player/ItemTooltipEvent.getItemStack:()Lnet/minecraft/item/ItemStack;
+       4: invokevirtual #195                // Method net/minecraft/item/ItemStack.func_77942_o:()Z
+       7: ifeq          389
+      10: aload_1
+      11: invokevirtual #192                // Method net/minecraftforge/event/entity/player/ItemTooltipEvent.getItemStack:()Lnet/minecraft/item/ItemStack;
+      14: invokevirtual #199                // Method net/minecraft/item/ItemStack.func_77978_p:()Lnet/minecraft/nbt/NBTTagCompound;
+      17: ldc           #201                // String remainingPotionHits
+      19: invokevirtual #207                // Method net/minecraft/nbt/NBTTagCompound.func_74762_e:(Ljava/lang/String;)I
+      22: istore_2
+      23: iload_2
+      24: ifle          389
+      27: aload_1
+      28: invokevirtual #192                // Method net/minecraftforge/event/entity/player/ItemTooltipEvent.getItemStack:()Lnet/minecraft/item/ItemStack;
+      31: invokestatic  #213                // Method net/minecraft/potion/PotionUtils.func_185189_a:(Lnet/minecraft/item/ItemStack;)Ljava/util/List;
+      34: invokeinterface #218,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      39: ifne          389
+      42: aload_1
+      43: invokevirtual #192                // Method net/minecraftforge/event/entity/player/ItemTooltipEvent.getItemStack:()Lnet/minecraft/item/ItemStack;
+      46: invokestatic  #213                // Method net/minecraft/potion/PotionUtils.func_185189_a:(Lnet/minecraft/item/ItemStack;)Ljava/util/List;
+      49: astore_3
+      50: new           #220                // class java/util/ArrayList
+      53: dup
+      54: invokespecial #221                // Method java/util/ArrayList."<init>":()V
+      57: astore        4
+      59: aload_3
+      60: invokeinterface #225,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      65: astore        5
+      67: aload         5
+      69: invokeinterface #230,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      74: ifeq          344
+      77: aload         5
+      79: invokeinterface #234,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      84: checkcast     #236                // class net/minecraft/potion/PotionEffect
+      87: astore        6
+      89: aload         4
+      91: aload         6
+      93: invokevirtual #240                // Method net/minecraft/potion/PotionEffect.func_76453_d:()Ljava/lang/String;
+      96: invokeinterface #244,  2          // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+     101: ifeq          107
+     104: goto          67
+     107: aload         4
+     109: aload         6
+     111: invokevirtual #240                // Method net/minecraft/potion/PotionEffect.func_76453_d:()Ljava/lang/String;
+     114: invokeinterface #247,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     119: pop
+     120: aload         6
+     122: invokevirtual #240                // Method net/minecraft/potion/PotionEffect.func_76453_d:()Ljava/lang/String;
+     125: iconst_0
+     126: anewarray     #4                  // class java/lang/Object
+     129: invokestatic  #253                // Method net/minecraft/client/resources/I18n.func_135052_a:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     132: invokevirtual #258                // Method java/lang/String.trim:()Ljava/lang/String;
+     135: astore        7
+     137: aload         6
+     139: invokevirtual #262                // Method net/minecraft/potion/PotionEffect.func_188419_a:()Lnet/minecraft/potion/Potion;
+     142: astore        8
+     144: aload         6
+     146: invokevirtual #266                // Method net/minecraft/potion/PotionEffect.func_76458_c:()I
+     149: ifle          212
+     152: new           #268                // class java/lang/StringBuilder
+     155: dup
+     156: invokespecial #269                // Method java/lang/StringBuilder."<init>":()V
+     159: aload         7
+     161: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     164: ldc_w         #275                // String
+     167: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     170: new           #268                // class java/lang/StringBuilder
+     173: dup
+     174: invokespecial #269                // Method java/lang/StringBuilder."<init>":()V
+     177: ldc_w         #277                // String potion.potency.
+     180: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     183: aload         6
+     185: invokevirtual #266                // Method net/minecraft/potion/PotionEffect.func_76458_c:()I
+     188: invokevirtual #280                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     191: invokevirtual #283                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     194: iconst_0
+     195: anewarray     #4                  // class java/lang/Object
+     198: invokestatic  #253                // Method net/minecraft/client/resources/I18n.func_135052_a:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     201: invokevirtual #258                // Method java/lang/String.trim:()Ljava/lang/String;
+     204: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     207: invokevirtual #283                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     210: astore        7
+     212: aload         6
+     214: invokevirtual #288                // Method net/minecraft/potion/PotionEffect.func_76459_b:()I
+     217: bipush        20
+     219: if_icmple     268
+     222: new           #268                // class java/lang/StringBuilder
+     225: dup
+     226: invokespecial #269                // Method java/lang/StringBuilder."<init>":()V
+     229: aload         7
+     231: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     234: ldc_w         #290                // String  (
+     237: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     240: aload         6
+     242: fconst_1
+     243: getstatic     #294                // Field com/mujmajnkraft/bettersurvival/config/ForgeConfigHandler.potions:Lcom/mujmajnkraft/bettersurvival/config/ForgeConfigHandler$PotionConfig;
+     246: getfield      #298                // Field com/mujmajnkraft/bettersurvival/config/ForgeConfigHandler$PotionConfig.potionDivisor:I
+     249: i2f
+     250: fdiv
+     251: invokestatic  #302                // Method net/minecraft/potion/Potion.func_188410_a:(Lnet/minecraft/potion/PotionEffect;F)Ljava/lang/String;
+     254: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     257: ldc_w         #304                // String )
+     260: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     263: invokevirtual #283                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     266: astore        7
+     268: aload         8
+     270: invokevirtual #307                // Method net/minecraft/potion/Potion.func_76398_f:()Z
+     273: ifeq          310
+     276: aload_1
+     277: invokevirtual #311                // Method net/minecraftforge/event/entity/player/ItemTooltipEvent.getToolTip:()Ljava/util/List;
+     280: new           #268                // class java/lang/StringBuilder
+     283: dup
+     284: invokespecial #269                // Method java/lang/StringBuilder."<init>":()V
+     287: getstatic     #317                // Field net/minecraft/util/text/TextFormatting.RED:Lnet/minecraft/util/text/TextFormatting;
+     290: invokevirtual #320                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+     293: aload         7
+     295: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     298: invokevirtual #283                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     301: invokeinterface #247,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     306: pop
+     307: goto          341
+     310: aload_1
+     311: invokevirtual #311                // Method net/minecraftforge/event/entity/player/ItemTooltipEvent.getToolTip:()Ljava/util/List;
+     314: new           #268                // class java/lang/StringBuilder
+     317: dup
+     318: invokespecial #269                // Method java/lang/StringBuilder."<init>":()V
+     321: getstatic     #323                // Field net/minecraft/util/text/TextFormatting.BLUE:Lnet/minecraft/util/text/TextFormatting;
+     324: invokevirtual #320                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+     327: aload         7
+     329: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     332: invokevirtual #283                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     335: invokeinterface #247,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     340: pop
+     341: goto          67
+     344: aload_1
+     345: invokevirtual #311                // Method net/minecraftforge/event/entity/player/ItemTooltipEvent.getToolTip:()Ljava/util/List;
+     348: new           #268                // class java/lang/StringBuilder
+     351: dup
+     352: invokespecial #269                // Method java/lang/StringBuilder."<init>":()V
+     355: iload_2
+     356: invokevirtual #280                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     359: ldc_w         #325                // String /
+     362: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     365: getstatic     #294                // Field com/mujmajnkraft/bettersurvival/config/ForgeConfigHandler.potions:Lcom/mujmajnkraft/bettersurvival/config/ForgeConfigHandler$PotionConfig;
+     368: getfield      #328                // Field com/mujmajnkraft/bettersurvival/config/ForgeConfigHandler$PotionConfig.maximumPotionHits:I
+     371: invokevirtual #280                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     374: ldc_w         #330                // String  hits remaining
+     377: invokevirtual #273                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     380: invokevirtual #283                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     383: invokeinterface #247,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     388: pop
+     389: return
+
+  public void onEvent(net.minecraftforge.client.event.FOVUpdateEvent);
+    Code:
+       0: getstatic     #350                // Field com/mujmajnkraft/bettersurvival/config/ForgeConfigHandler.client:Lcom/mujmajnkraft/bettersurvival/config/ForgeConfigHandler$ClientConfig;
+       3: getfield      #353                // Field com/mujmajnkraft/bettersurvival/config/ForgeConfigHandler$ClientConfig.staticFOV:Z
+       6: ifeq          17
+       9: aload_1
+      10: fconst_1
+      11: invokevirtual #359                // Method net/minecraftforge/client/event/FOVUpdateEvent.setNewfov:(F)V
+      14: goto          233
+      17: getstatic     #350                // Field com/mujmajnkraft/bettersurvival/config/ForgeConfigHandler.client:Lcom/mujmajnkraft/bettersurvival/config/ForgeConfigHandler$ClientConfig;
+      20: getfield      #362                // Field com/mujmajnkraft/bettersurvival/config/ForgeConfigHandler$ClientConfig.fovShields:Z
+      23: ifeq          233
+      26: fconst_1
+      27: fstore_2
+      28: invokestatic  #33                 // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+      31: getfield      #41                 // Field net/minecraft/client/Minecraft.field_71439_g:Lnet/minecraft/client/entity/EntityPlayerSP;
+      34: astore_3
+      35: aload_3
+      36: getfield      #368                // Field net/minecraft/client/entity/AbstractClientPlayer.field_71075_bZ:Lnet/minecraft/entity/player/PlayerCapabilities;
+      39: getfield      #373                // Field net/minecraft/entity/player/PlayerCapabilities.field_75100_b:Z
+      42: ifeq          51
+      45: fload_2
+      46: ldc_w         #374                // float 1.1f
+      49: fmul
+      50: fstore_2
+      51: aload_3
+      52: getstatic     #380                // Field net/minecraft/entity/SharedMonsterAttributes.field_111263_d:Lnet/minecraft/entity/ai/attributes/IAttribute;
+      55: invokevirtual #384                // Method net/minecraft/client/entity/AbstractClientPlayer.func_110148_a:(Lnet/minecraft/entity/ai/attributes/IAttribute;)Lnet/minecraft/entity/ai/attributes/IAttributeInstance;
+      58: invokeinterface #390,  1          // InterfaceMethod net/minecraft/entity/ai/attributes/IAttributeInstance.func_111126_e:()D
+      63: dstore        4
+      65: aload_3
+      66: getstatic     #380                // Field net/minecraft/entity/SharedMonsterAttributes.field_111263_d:Lnet/minecraft/entity/ai/attributes/IAttribute;
+      69: invokevirtual #384                // Method net/minecraft/client/entity/AbstractClientPlayer.func_110148_a:(Lnet/minecraft/entity/ai/attributes/IAttribute;)Lnet/minecraft/entity/ai/attributes/IAttributeInstance;
+      72: getstatic     #396                // Field com/mujmajnkraft/bettersurvival/items/ItemCustomShield.weightModifierUUID:Ljava/util/UUID;
+      75: invokeinterface #400,  2          // InterfaceMethod net/minecraft/entity/ai/attributes/IAttributeInstance.func_111127_a:(Ljava/util/UUID;)Lnet/minecraft/entity/ai/attributes/AttributeModifier;
+      80: ifnull        112
+      83: aload_3
+      84: getstatic     #380                // Field net/minecraft/entity/SharedMonsterAttributes.field_111263_d:Lnet/minecraft/entity/ai/attributes/IAttribute;
+      87: invokevirtual #384                // Method net/minecraft/client/entity/AbstractClientPlayer.func_110148_a:(Lnet/minecraft/entity/ai/attributes/IAttribute;)Lnet/minecraft/entity/ai/attributes/IAttributeInstance;
+      90: getstatic     #396                // Field com/mujmajnkraft/bettersurvival/items/ItemCustomShield.weightModifierUUID:Ljava/util/UUID;
+      93: invokeinterface #400,  2          // InterfaceMethod net/minecraft/entity/ai/attributes/IAttributeInstance.func_111127_a:(Ljava/util/UUID;)Lnet/minecraft/entity/ai/attributes/AttributeModifier;
+      98: invokevirtual #405                // Method net/minecraft/entity/ai/attributes/AttributeModifier.func_111164_d:()D
+     101: dconst_1
+     102: dadd
+     103: dstore        6
+     105: dload         4
+     107: dload         6
+     109: ddiv
+     110: dstore        4
+     112: fload_2
+     113: f2d
+     114: dload         4
+     116: aload_3
+     117: getfield      #368                // Field net/minecraft/client/entity/AbstractClientPlayer.field_71075_bZ:Lnet/minecraft/entity/player/PlayerCapabilities;
+     120: invokevirtual #408                // Method net/minecraft/entity/player/PlayerCapabilities.func_75094_b:()F
+     123: f2d
+     124: ddiv
+     125: dconst_1
+     126: dadd
+     127: ldc2_w        #409                // double 2.0d
+     130: ddiv
+     131: dmul
+     132: d2f
+     133: fstore_2
+     134: aload_3
+     135: getfield      #368                // Field net/minecraft/client/entity/AbstractClientPlayer.field_71075_bZ:Lnet/minecraft/entity/player/PlayerCapabilities;
+     138: invokevirtual #408                // Method net/minecraft/entity/player/PlayerCapabilities.func_75094_b:()F
+     141: fconst_0
+     142: fcmpl
+     143: ifeq          160
+     146: fload_2
+     147: invokestatic  #416                // Method java/lang/Float.isNaN:(F)Z
+     150: ifne          160
+     153: fload_2
+     154: invokestatic  #419                // Method java/lang/Float.isInfinite:(F)Z
+     157: ifeq          162
+     160: fconst_1
+     161: fstore_2
+     162: aload_3
+     163: invokevirtual #422                // Method net/minecraft/client/entity/AbstractClientPlayer.func_184587_cr:()Z
+     166: ifeq          228
+     169: aload_3
+     170: invokevirtual #423                // Method net/minecraft/client/entity/AbstractClientPlayer.func_184607_cu:()Lnet/minecraft/item/ItemStack;
+     173: invokevirtual #69                 // Method net/minecraft/item/ItemStack.func_77973_b:()Lnet/minecraft/item/Item;
+     176: instanceof    #425                // class net/minecraft/item/ItemBow
+     179: ifeq          228
+     182: aload_3
+     183: invokevirtual #428                // Method net/minecraft/client/entity/AbstractClientPlayer.func_184612_cw:()I
+     186: istore        6
+     188: iload         6
+     190: i2f
+     191: ldc_w         #429                // float 20.0f
+     194: fdiv
+     195: fstore        7
+     197: fload         7
+     199: fconst_1
+     200: fcmpl
+     201: ifle          210
+     204: fconst_1
+     205: fstore        7
+     207: goto          217
+     210: fload         7
+     212: fload         7
+     214: fmul
+     215: fstore        7
+     217: fload_2
+     218: fconst_1
+     219: fload         7
+     221: ldc_w         #430                // float 0.15f
+     224: fmul
+     225: fsub
+     226: fmul
+     227: fstore_2
+     228: aload_1
+     229: fload_2
+     230: invokevirtual #359                // Method net/minecraftforge/client/event/FOVUpdateEvent.setNewfov:(F)V
+     233: return
+}
