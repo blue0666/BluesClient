@@ -30,18 +30,18 @@ public final class LocksController {
         if (guiLength > 0) {
             length = guiLength;
         }
-        System.out.println("锁ID"+id+"Seed"+seed);
         combination = LockCombination.compute(id, seed.getAsLong(), length);
-        System.out.println(Arrays.toString(combination));
         LockDriver.enable();
     }
 
-    public static void onPin(boolean correct, boolean reset) {
-    }
     public static void onTick(GuiContainer gui, int selectedPin) {
         if (!canRun()) {
             return;
         }
         LockDriver.onTick(gui, selectedPin, combination);
+    }
+
+    public static float desiredPickSpeed() {
+        return LockDriver.desiredPickSpeed();
     }
 }
