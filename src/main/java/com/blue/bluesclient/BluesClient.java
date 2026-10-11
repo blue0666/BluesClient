@@ -8,6 +8,7 @@ import com.blue.bluesclient.event.malilib.InitListener;
 import com.blue.bluesclient.feat.allowflight.FlightHandler;
 import com.blue.bluesclient.feat.everythingnunchaku.NunchakuConfigProvider;
 import com.blue.bluesclient.feat.nohiddenflag.TooltipListener;
+import com.blue.bluesclient.feat.tooltipscroller.TooltipScrollHandler;
 import fi.dy.masa.malilib.event.InitializationHandler;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,6 +41,7 @@ public class BluesClient
     {
         logger = event.getModLog();
         MinecraftForge.EVENT_BUS.register(TooltipListener.class);
+        MinecraftForge.EVENT_BUS.register(TooltipScrollHandler.class);
         if (Loader.isModLoaded(ModReference.BETTERCOMBATMOD)) {
             if (ModReference.hasRlCombatServerConfig()) {
                 MinecraftForge.EVENT_BUS.register(RLCombatOffhandModern.class);

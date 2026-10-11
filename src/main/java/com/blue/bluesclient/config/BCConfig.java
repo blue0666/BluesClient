@@ -56,6 +56,7 @@ public class BCConfig implements IConfigHandler {
     public static final ConfigBoolean DamageDisplayHurt = ofBoolean("伤害调试:受击",false,"在左下角实时显示玩家受到的伤害来源与类型，包括非<伤害>的血量变化\n" +  TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
     public static final ConfigBoolean DamageDisplayAttack = ofBoolean("伤害调试:攻击",false,"在左下角实时显示玩家造成的伤害\n原始伤害：ForgeHooks.onLivingHurt 进入总线之前\n实际伤害：ForgeHooks.onLivingDamage 整次总线之后\n" +  TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
     public static final ConfigBoolean NoDamageFallOff = ofBoolean("禁用伤害衰减",false,"禁用德雷版本的伤害衰减系统\n"+TextFormatting.YELLOW + "服务器中不生效"+ TextFormatting.RESET);
+    public static final ConfigBoolean ToolTipScroller = ofBoolean("物品Tip滚动查看",false,"物品有的时候属性信息太长了，使用Shift+滚轮上下拖动物品的属性信息界面");
     public static final ConfigBoolean TileEntityEsp = ofBoolean("容器透视", false, "透视方块实体类型，可用于寄生虫大楼找箱子，只透视方块实体而不是所有方块是因为这样能大幅提高性能");
     public static final ConfigInteger TileEntityEspDistance = ofInteger("容器透视距离", 64, 1, 256);
     public static final ConfigInteger TileEntityEspTransparency = ofInteger("容器透视透明度",100,0,100,"大量的白色方框有点太影响观感了，自选适当调低透明度");
@@ -118,9 +119,10 @@ public class BCConfig implements IConfigHandler {
                 AlwaysSneak,
                 DamageDisplayHurt,
                 DamageDisplayAttack,
+                NoDamageFallOff,
+                ToolTipScroller,
                 AutoUnlockPlus,
                 LockWorldSeed,
-                NoDamageFallOff,
                 TileEntityEsp,
                 TileEntityEspDistance,
                 TileEntityEspTransparency,
