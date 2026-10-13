@@ -7,10 +7,12 @@ import com.blue.bluesclient.event.forge.modern.RLCombatOffhandModern;
 import com.blue.bluesclient.event.malilib.InitListener;
 import com.blue.bluesclient.feat.allowflight.FlightHandler;
 import com.blue.bluesclient.feat.everythingnunchaku.NunchakuConfigProvider;
+import com.blue.bluesclient.feat.fastclick.FastLeftClickHandler;
+import com.blue.bluesclient.feat.fastclick.FastRightClickHandler;
+import com.blue.bluesclient.feat.gamma.GammaOverrideHandler;
 import com.blue.bluesclient.feat.nohiddenflag.TooltipListener;
 import com.blue.bluesclient.feat.tooltipscroller.TooltipScrollHandler;
 import fi.dy.masa.malilib.event.InitializationHandler;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -54,8 +56,12 @@ public class BluesClient
             MinecraftForge.EVENT_BUS.register(OutgoingDamageDisplayHandler.class);
         }
         MinecraftForge.EVENT_BUS.register(FlightHandler.class);
-        InitializationHandler.getInstance()
-                .registerInitializationHandler(new InitListener());
+        InitializationHandler.getInstance().registerInitializationHandler(new InitListener());
+
+        MinecraftForge.EVENT_BUS.register(GammaOverrideHandler.class);
+        MinecraftForge.EVENT_BUS.register(FastRightClickHandler.class);
+        MinecraftForge.EVENT_BUS.register(FastLeftClickHandler.class);
+
     }
 
     @EventHandler

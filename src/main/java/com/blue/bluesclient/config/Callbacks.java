@@ -2,12 +2,12 @@ package com.blue.bluesclient.config;
 
 import com.blue.bluesclient.config.gui.BCConfigScreen;
 import com.blue.bluesclient.feat.everythingnunchaku.NunchakuConfigProvider;
+import com.blue.bluesclient.feat.gamma.GammaOverrideHandler;
 import fi.dy.masa.malilib.util.InfoUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.CPacketEntityAction;
 
-import static com.blue.bluesclient.config.BCConfig.EverythingNunchakuToggle;
-import static com.blue.bluesclient.config.BCConfig.FlightToggle;
+import static com.blue.bluesclient.config.BCConfig.*;
 
 public class Callbacks {
     public static void init(Minecraft client) {
@@ -60,10 +60,29 @@ public class Callbacks {
             mc.playerController.setPlayerCapabilities(mc.player);
         });
 
+        FastRightClickToggle.getKeybind().setCallback((a,k)->{
+            FastRightClick.toggleBooleanValue();
+            InfoUtils.printBooleanConfigToggleMessage(
+                    FastRightClick.getPrettyName(),
+                    FastRightClick.getBooleanValue());
+            return true;
+        });
+
+        FastLeftClickToggle.getKeybind().setCallback((a,k)->{
+            FastLeftClick.toggleBooleanValue();
+            InfoUtils.printBooleanConfigToggleMessage(
+                    FastLeftClick.getPrettyName(),
+                    FastLeftClick.getBooleanValue());
+            return true;
+        });
+
         Runnable reload = NunchakuConfigProvider::initClientNunchakus;
         BCConfig.NunchakuItemIDWhitelist.setValueChangeCallback(c -> reload.run());
         BCConfig.NunchakuItemIDBlacklist.setValueChangeCallback(c -> reload.run());
         BCConfig.NunchakuEntityBlacklist.setValueChangeCallback(c -> reload.run());
         BCConfig.NunchakuItemClassWhitelist.setValueChangeCallback(c -> reload.run());
+
+        BCConfig.GammaOverride.setValueChangeCallback(cfg -> GammaOverrideHandler.applyFromConfig());
+        GammaOverrideHandler.applyFromConfig();
     }
 }

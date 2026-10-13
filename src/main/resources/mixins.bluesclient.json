@@ -11,10 +11,12 @@
     "alwayssneak.EntityPlayerSPMixin",
     "alwayssneak.MovementInputFromOptionsMixin",
     "blockfakevillager.PlayerControllerMPMixin",
+    "damagedisplay.ForgeHooksOutgoingDamageMixin",
+    "fastclick.FastLeftClickAccessor",
+    "fastclick.FastRightClickAccessor",
     "mobsglowing.EntityGlowingMixin",
-    "damagedisplay.ForgeHooksOutgoingDamageMixin"
+    "tooltipscroller.GuiUtilsMixin"
   ],
   "mixins": [
-
   ]
 }

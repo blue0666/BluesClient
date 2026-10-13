@@ -13,11 +13,18 @@ import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Mouse;
 
 public class TooltipScrollHandler {
-    private static int offsetY;
+    private static final float STEP = 20f;
+    private static final float LERP = 0.35f;
+    private static float offsetY;
+    private static float targetY;
     private static ItemStack last = ItemStack.EMPTY;
+    public static int getOffsetY() {
+        return Math.round(offsetY);
+    }
 
     private static boolean active() {
         if (!BCConfig.ToolTipScroller.getBooleanValue()) return false;
@@ -30,7 +37,7 @@ public class TooltipScrollHandler {
         if (!active()) return;
         int wheel = Mouse.getEventDWheel();
         if (wheel == 0) return;
-        offsetY += wheel > 0 ? -20 : 20;
+        targetY += wheel > 0 ? -STEP : STEP;
         e.setCanceled(true);
     }
 
@@ -44,17 +51,34 @@ public class TooltipScrollHandler {
                     || last.getMetadata() != stack.getMetadata()) {
                 last = stack.copy();
                 offsetY = 0;
+                targetY = 0;
             } else {
                 last = stack.copy();
             }
         }
-        e.setY(e.getY() + offsetY);
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onRenderTick(TickEvent.RenderTickEvent e) {
+        if (e.phase != TickEvent.Phase.START) return;
+        if (active()) {
+            Mouse.getDWheel();
+        }
+        if (!BCConfig.ToolTipScroller.getBooleanValue()) return;
+        if (Minecraft.getMinecraft().currentScreen == null) return;
+        float d = targetY - offsetY;
+        if (Math.abs(d) < 0.5f) {
+            offsetY = targetY;
+        } else {
+            offsetY += d * LERP;
+        }
     }
 
     @SubscribeEvent
     public static void onGui(GuiOpenEvent e) {
         if (e.getGui() == null) {
             offsetY = 0;
+            targetY = 0;
             last = ItemStack.EMPTY;
         }
     }

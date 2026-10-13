@@ -23,8 +23,10 @@ public class BCConfigScreen extends GuiConfigsBase{
             new ConfigGuiTabBase("列表", 200, false, BCConfig.LIST);
     private static final ConfigGuiTabBase MISCELLANEOUS =
             new ConfigGuiTabBase("杂项", 200, false, BCConfig.MISCELLANEOUS);
+    private static final ConfigGuiTabBase DEBUG =
+            new ConfigGuiTabBase("调试", 200, false, buildDebugTab());
     private static final ImmutableList<IConfigGuiTab> TABS =
-            ImmutableList.of(VALUE, LIST, HOTKEY, MISCELLANEOUS);
+            ImmutableList.of(VALUE, LIST, HOTKEY, MISCELLANEOUS,DEBUG);
 
     private static IConfigGuiTab currentTab = VALUE;
     public BCConfigScreen() {
@@ -46,9 +48,6 @@ public class BCConfigScreen extends GuiConfigsBase{
             list.remove(BCConfig.RLCombatEntityBlacklist);
             list.remove(BCConfig.RLCombatOffhandNunchaku);
         }
-        if(!ModReference.VanillaPlus){
-            list.remove(BCConfig.FlightDebug);
-        }
         return ImmutableList.copyOf(list);
     }
 
@@ -56,6 +55,14 @@ public class BCConfigScreen extends GuiConfigsBase{
         List<IConfigBase> list = new ArrayList<>(BCConfig.KEYBIND);
         if(!ModReference.VanillaPlus){
             list.remove(BCConfig.FlightToggle);
+        }
+        return ImmutableList.copyOf(list);
+    }
+
+    private static ImmutableList<IConfigBase> buildDebugTab(){
+        List<IConfigBase> list = new ArrayList<>(BCConfig.DEBUG);
+        if(!ModReference.VanillaPlus){
+            list.remove(BCConfig.FlightDebug);
         }
         return ImmutableList.copyOf(list);
     }
