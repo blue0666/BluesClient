@@ -1,6 +1,7 @@
 package com.blue.bluesclient.modmixins.locks;
 
 import com.blue.bluesclient.config.BCConfig;
+import com.blue.bluesclient.feat.autounlock.InstantUnlock;
 import com.blue.bluesclient.feat.autounlock.LocksController;
 import melonslise.locks.client.gui.LockPickingGui;
 import melonslise.locks.client.gui.sprite.Sprite;
@@ -34,11 +35,19 @@ public abstract class LockPickingGuiMixin extends GuiContainer {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void bluesclient$onOpen(LockPickingContainer cont, CallbackInfo ci) {
+        if (InstantUnlock.canRun()) {
+            InstantUnlock.tryUnlock(this, this.length);
+            return;
+        }
         LocksController.onOpen(this, this.length);
     }
 
     @Inject(method = "updateScreen", at = @At("HEAD"), remap = true)
     private void bluesclient$onTick(CallbackInfo ci) {
+        if (InstantUnlock.autoCloseGuiAfterUnlock((LockPickingGui) (Object) this)) {
+            this.mc.player.closeScreen();
+            return;
+        }
         LocksController.onTick(this, this.getSelectedPin());
     }
 

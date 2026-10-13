@@ -40,3 +40,5 @@ Thumbs.db
 # local secrets / machine-specific
 local.properties
 *.hprof
+
+.tmp_locks/

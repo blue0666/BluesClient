@@ -12,9 +12,7 @@ import fi.dy.masa.malilib.gui.interfaces.IConfigGuiTab;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.blue.bluesclient.ModReference.hasRlCombatServerConfig;
-
-public class BCConfigScreen extends GuiConfigsBase{
+public class BCConfigScreen extends GuiConfigsBase {
     private static final ConfigGuiTabBase VALUE =
             new ConfigGuiTabBase("值", 100, false, buildValueTab());
     private static final ConfigGuiTabBase HOTKEY =
@@ -26,16 +24,19 @@ public class BCConfigScreen extends GuiConfigsBase{
     private static final ConfigGuiTabBase DEBUG =
             new ConfigGuiTabBase("调试", 200, false, buildDebugTab());
     private static final ImmutableList<IConfigGuiTab> TABS =
-            ImmutableList.of(VALUE, LIST, HOTKEY, MISCELLANEOUS,DEBUG);
+            ImmutableList.of(VALUE, LIST, HOTKEY, MISCELLANEOUS, DEBUG);
 
     private static IConfigGuiTab currentTab = VALUE;
+
     public BCConfigScreen() {
         super(10, 50, BluesClient.MODID, null, TABS, BluesClient.NAME + " Configs");
     }
+
     @Override
     public IConfigGuiTab getCurrentTab() {
         return currentTab;
     }
+
     @Override
     public void setCurrentTab(IConfigGuiTab tab) {
         currentTab = tab;
@@ -51,17 +52,17 @@ public class BCConfigScreen extends GuiConfigsBase{
         return ImmutableList.copyOf(list);
     }
 
-    private static ImmutableList<IConfigBase> buildHotKeyTab(){
+    private static ImmutableList<IConfigBase> buildHotKeyTab() {
         List<IConfigBase> list = new ArrayList<>(BCConfig.KEYBIND);
-        if(!ModReference.VanillaPlus){
+        if (!ModReference.FlightDebug) {
             list.remove(BCConfig.FlightToggle);
         }
         return ImmutableList.copyOf(list);
     }
 
-    private static ImmutableList<IConfigBase> buildDebugTab(){
+    private static ImmutableList<IConfigBase> buildDebugTab() {
         List<IConfigBase> list = new ArrayList<>(BCConfig.DEBUG);
-        if(!ModReference.VanillaPlus){
+        if (!ModReference.FlightDebug) {
             list.remove(BCConfig.FlightDebug);
         }
         return ImmutableList.copyOf(list);

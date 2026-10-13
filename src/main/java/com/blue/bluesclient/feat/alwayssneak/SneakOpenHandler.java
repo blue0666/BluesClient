@@ -1,6 +1,7 @@
 package com.blue.bluesclient.feat.alwayssneak;
 
 import com.blue.bluesclient.config.BCConfig;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockShulkerBox;
@@ -11,12 +12,15 @@ import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public class SneakOpenHandler {
@@ -40,10 +44,11 @@ public class SneakOpenHandler {
             return;
         }
 
-        net.minecraft.block.Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-        if (!(block instanceof BlockChest ||
-                block instanceof BlockEnderChest ||
-                block instanceof BlockShulkerBox)) {
+        Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+        ResourceLocation id = Block.REGISTRY.getNameForObject(block);
+        if (id == null) return;
+        List<String> allow = BCConfig.SneakOpenBlockList.getStrings();
+        if (!allow.contains(id.toString())) {
             return;
         }
         openChestWhileSneaking(player, event.getPos(), event.getFace(), event.getHand());
