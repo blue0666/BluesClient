@@ -34,7 +34,7 @@ public class BluesClient
 {
     public static final String MODID = "bluesclient";
     public static final String NAME = "BluesClient";
-    public static final String VERSION = "0.0.13";
+    public static final String VERSION = "0.0.14";
 
     private static Logger logger;
 

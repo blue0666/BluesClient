@@ -5,6 +5,7 @@ import fi.dy.masa.malilib.config.options.*;
 import fi.dy.masa.malilib.hotkeys.IHotkeyCallback;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.InfoUtils;
+import net.minecraft.client.resources.I18n;
 
 import java.util.function.BooleanSupplier;
 
@@ -12,68 +13,195 @@ public class ConfigFactory {
     private static final String DEFAULT_COMMENT = "No comment";
     private static final String PRETTY_NAME = "No further comment";
 
-    public static ConfigBoolean ofBoolean(String name) {
-        return new ConfigBoolean(name, false, DEFAULT_COMMENT);
+    private static String translateOrDefault(String key, String defaultString) {
+        return I18n.hasKey(key) ? I18n.format(key) : defaultString;
     }
 
-    public static ConfigBoolean ofBoolean(String name, Boolean defaultValue) {
-        return new ConfigBoolean(name, defaultValue, DEFAULT_COMMENT);
+    public static ConfigBoolean ofLocalizedBoolean(String id, String defaultName) {
+        return ofLocalizedBoolean(id, defaultName, false, DEFAULT_COMMENT);
     }
 
-    public static ConfigBoolean ofBoolean(String name, Boolean defaultValue, String comment) {
-        return new ConfigBoolean(name, defaultValue, comment);
+
+    public static ConfigBoolean ofLocalizedBoolean(String id, String defaultName, Boolean defaultValue) {
+        return ofLocalizedBoolean(id, defaultName, defaultValue, DEFAULT_COMMENT);
     }
 
-    public static ConfigBoolean ofBoolean(String name, Boolean defaultValue, String comment, String prettyName) {
-        return new ConfigBoolean(name, defaultValue, comment, prettyName);
+    public static ConfigBoolean ofLocalizedBoolean(
+            String id, String name, boolean defaultValue, String comment) {
+
+        String key = "bluesclient.config." + id;
+
+        return new ConfigBoolean(name, defaultValue, comment) {
+            @Override
+            public String getPrettyName() {
+                return translateOrDefault(key + ".name", name);
+            }
+
+            @Override
+            public String getConfigGuiDisplayName() {
+                return getPrettyName();
+            }
+
+            @Override
+            public String getComment() {
+                return translateOrDefault(key + ".comment", comment);
+            }
+        };
     }
 
-    public static ConfigString ofString(String name, String defaultValue) {
-        return new ConfigString(name, defaultValue, DEFAULT_COMMENT);
+    public static ConfigString ofLocalizedString(
+            String id, String defaultName, String defaultValue) {
+        return ofLocalizedString(id, defaultName, defaultValue, DEFAULT_COMMENT);
     }
 
-    public static ConfigString ofString(String name, String defaultValue, String comment) {
-        return new ConfigString(name, defaultValue, comment);
+    public static ConfigString ofLocalizedString(
+            String id, String defaultName, String defaultValue, String defaultComment) {
+
+        String key = "bluesclient.config." + id;
+
+        return new ConfigString(defaultName, defaultValue, defaultComment) {
+            @Override
+            public String getPrettyName() {
+                return translateOrDefault(key + ".name", defaultName);
+            }
+
+            @Override
+            public String getConfigGuiDisplayName() {
+                return getPrettyName();
+            }
+
+            @Override
+            public String getComment() {
+                return translateOrDefault(key + ".comment", defaultComment);
+            }
+        };
     }
 
-    public static ConfigStringList ofStringList(String name, ImmutableList<String> defaultValue) {
-        return ofStringList(name, defaultValue, DEFAULT_COMMENT);
+    public static ConfigStringList ofLocalizedStringList(
+            String id, String defaultName, ImmutableList<String> defaultValue) {
+        return ofLocalizedStringList(id, defaultName, defaultValue, DEFAULT_COMMENT);
     }
 
-    public static ConfigStringList ofStringList(String name, ImmutableList<String> defaultValue, String comment) {
-        return new ConfigStringList(name, defaultValue, comment);
+    public static ConfigStringList ofLocalizedStringList(
+            String id, String defaultName, ImmutableList<String> defaultValue,
+            String defaultComment) {
+
+        String key = "bluesclient.config." + id;
+
+        return new ConfigStringList(defaultName, defaultValue, defaultComment) {
+            @Override
+            public String getPrettyName() {
+                return translateOrDefault(key + ".name", defaultName);
+            }
+
+            @Override
+            public String getConfigGuiDisplayName() {
+                return getPrettyName();
+            }
+
+            @Override
+            public String getComment() {
+                return translateOrDefault(key + ".comment", defaultComment);
+            }
+        };
     }
 
-    public static ConfigHotkey ofHotkey(String name, String defaultStorageString) {
-        return ofHotkey(name, defaultStorageString, DEFAULT_COMMENT);
+    public static ConfigInteger ofLocalizedInteger(
+            String id, String defaultName, int defaultValue,
+            int minValue, int maxValue) {
+        return ofLocalizedInteger(
+                id, defaultName, defaultValue, minValue, maxValue,
+                false, DEFAULT_COMMENT);
     }
 
-    public static ConfigHotkey ofHotkey(String name, String defaultStorageString, String comment) {
-        return ofHotkey(name, defaultStorageString, KeybindSettings.DEFAULT, comment);
+    public static ConfigInteger ofLocalizedInteger(
+            String id, String defaultName, int defaultValue,
+            int minValue, int maxValue, boolean useSlider) {
+        return ofLocalizedInteger(
+                id, defaultName, defaultValue, minValue, maxValue,
+                useSlider, DEFAULT_COMMENT);
     }
 
-    public static ConfigHotkey ofHotkey(String name, String defaultStorageString, KeybindSettings settings) {
-        return ofHotkey(name, defaultStorageString, settings, DEFAULT_COMMENT);
+    public static ConfigInteger ofLocalizedInteger(
+            String id, String defaultName, int defaultValue,
+            int minValue, int maxValue, String defaultComment) {
+        return ofLocalizedInteger(
+                id, defaultName, defaultValue, minValue, maxValue,
+                false, defaultComment);
     }
 
-    public static ConfigHotkey ofHotkey(String name, String defaultStorageString, KeybindSettings settings, String comment) {
-        return new ConfigHotkey(name, defaultStorageString, settings, comment);
+    public static ConfigInteger ofLocalizedInteger(
+            String id, String defaultName, int defaultValue,
+            int minValue, int maxValue, boolean useSlider, String defaultComment) {
+
+        String key = "bluesclient.config." + id;
+
+        return new ConfigInteger(
+                defaultName, defaultValue, minValue, maxValue,
+                useSlider, defaultComment) {
+            @Override
+            public String getPrettyName() {
+                return translateOrDefault(key + ".name", defaultName);
+            }
+
+            @Override
+            public String getConfigGuiDisplayName() {
+                return getPrettyName();
+            }
+
+            @Override
+            public String getComment() {
+                return translateOrDefault(key + ".comment", defaultComment);
+            }
+        };
     }
 
-    public static ConfigInteger ofInteger(String name, int defaultValue, int minValue, int maxValue) {
-        return ofInteger(name, defaultValue, minValue, maxValue, false);
+    public static ConfigHotkey ofLocalizedHotkey(
+            String id, String defaultName, String defaultStorageString) {
+        return ofLocalizedHotkey(
+                id, defaultName, defaultStorageString,
+                KeybindSettings.DEFAULT, DEFAULT_COMMENT);
     }
 
-    public static ConfigInteger ofInteger(String name, int defaultValue, int minValue, int maxValue, boolean useSlider) {
-        return ofInteger(name, defaultValue, minValue, maxValue, useSlider, DEFAULT_COMMENT);
+    public static ConfigHotkey ofLocalizedHotkey(
+            String id, String defaultName, String defaultStorageString,
+            String defaultComment) {
+        return ofLocalizedHotkey(
+                id, defaultName, defaultStorageString,
+                KeybindSettings.DEFAULT, defaultComment);
     }
 
-    public static ConfigInteger ofInteger(String name, int defaultValue, int minValue, int maxValue, String comment) {
-        return ofInteger(name, defaultValue, minValue, maxValue, false, comment);
+    public static ConfigHotkey ofLocalizedHotkey(
+            String id, String defaultName, String defaultStorageString,
+            KeybindSettings settings) {
+        return ofLocalizedHotkey(
+                id, defaultName, defaultStorageString,
+                settings, DEFAULT_COMMENT);
     }
 
-    public static ConfigInteger ofInteger(String name, int defaultValue, int minValue, int maxValue, boolean useSlider, String comment) {
-        return new ConfigInteger(name, defaultValue, minValue, maxValue, useSlider, comment);
+    public static ConfigHotkey ofLocalizedHotkey(
+            String id, String defaultName, String defaultStorageString,
+            KeybindSettings settings, String defaultComment) {
+
+        String key = "bluesclient.config." + id;
+
+        return new ConfigHotkey(
+                defaultName, defaultStorageString, settings, defaultComment) {
+            @Override
+            public String getPrettyName() {
+                return translateOrDefault(key + ".name", defaultName);
+            }
+
+            @Override
+            public String getConfigGuiDisplayName() {
+                return getPrettyName();
+            }
+
+            @Override
+            public String getComment() {
+                return translateOrDefault(key + ".comment", defaultComment);
+            }
+        };
     }
 
     public static void setToggleCallback(ConfigHotkey config, IHotkeyCallback rawCallback, BooleanSupplier newValue) {

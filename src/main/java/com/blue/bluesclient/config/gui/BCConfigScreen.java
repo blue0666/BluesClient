@@ -14,22 +14,22 @@ import java.util.List;
 
 public class BCConfigScreen extends GuiConfigsBase {
     private static final ConfigGuiTabBase VALUE =
-            new ConfigGuiTabBase("值", 100, false, buildValueTab());
+            new ConfigGuiTabBase("bluesclient.gui.tab.value", 100, false, buildValueTab());
     private static final ConfigGuiTabBase HOTKEY =
-            new ConfigGuiTabBase("热键", 200, true, buildHotKeyTab());
+            new ConfigGuiTabBase("bluesclient.gui.tab.hotkey", 200, true, buildHotKeyTab());
     private static final ConfigGuiTabBase LIST =
-            new ConfigGuiTabBase("列表", 200, false, BCConfig.LIST);
+            new ConfigGuiTabBase("bluesclient.gui.tab.list", 200, false, BCConfig.LIST);
     private static final ConfigGuiTabBase MISCELLANEOUS =
-            new ConfigGuiTabBase("杂项", 200, false, BCConfig.MISCELLANEOUS);
+            new ConfigGuiTabBase("bluesclient.gui.tab.miscellaneous", 200, false, BCConfig.MISCELLANEOUS);
     private static final ConfigGuiTabBase DEBUG =
-            new ConfigGuiTabBase("调试", 200, false, buildDebugTab());
+            new ConfigGuiTabBase("bluesclient.gui.tab.debug", 200, false, buildDebugTab());
     private static final ImmutableList<IConfigGuiTab> TABS =
             ImmutableList.of(VALUE, LIST, HOTKEY, MISCELLANEOUS, DEBUG);
 
     private static IConfigGuiTab currentTab = VALUE;
 
     public BCConfigScreen() {
-        super(10, 50, BluesClient.MODID, null, TABS, BluesClient.NAME + " Configs");
+        super(10, 50, BluesClient.MODID, null, TABS, "bluesclient.gui.title");
     }
 
     @Override

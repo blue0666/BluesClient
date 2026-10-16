@@ -35,6 +35,8 @@ public abstract class LockPickingGuiMixin extends GuiContainer {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void bluesclient$onOpen(LockPickingContainer cont, CallbackInfo ci) {
+        //这逻辑写的越来越乱了= =
+        if(!BCConfig.AutoUnlockPlus.getBooleanValue() && !BCConfig.AutoUnlockInstant.getBooleanValue()) return;
         if (InstantUnlock.canRun()) {
             InstantUnlock.tryUnlock(this, this.length);
             return;
@@ -44,6 +46,7 @@ public abstract class LockPickingGuiMixin extends GuiContainer {
 
     @Inject(method = "updateScreen", at = @At("HEAD"), remap = true)
     private void bluesclient$onTick(CallbackInfo ci) {
+        if(!BCConfig.AutoUnlockPlus.getBooleanValue() && !BCConfig.AutoUnlockInstant.getBooleanValue()) return;
         if (InstantUnlock.autoCloseGuiAfterUnlock((LockPickingGui) (Object) this)) {
             this.mc.player.closeScreen();
             return;
@@ -54,7 +57,9 @@ public abstract class LockPickingGuiMixin extends GuiContainer {
     @Inject(method = "updateLockPickSpeed", at = @At("RETURN"), remap = false, cancellable = true)
     private void bluesclient$forcePickSpeed(CallbackInfo ci) {
         //本来可以用操作键盘来控制撬锁器，但是整合包内键盘的事件太多了(与Debris同时开启的时候被覆写)，因此转为直接修改操作撬锁器本身
+        if(!BCConfig.AutoUnlockPlus.getBooleanValue() && !BCConfig.AutoUnlockInstant.getBooleanValue()) return;
         if(!BCConfig.AutoUnlockPlus.getBooleanValue()) return;
+
         if (this.frozen) {
             return;
         }

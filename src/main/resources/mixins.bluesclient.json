@@ -14,8 +14,11 @@
     "damagedisplay.ForgeHooksOutgoingDamageMixin",
     "fastclick.FastLeftClickAccessor",
     "fastclick.FastRightClickAccessor",
+    "malilib.ConfigMixin",
     "mobsglowing.EntityGlowingMixin",
-    "tooltipscroller.GuiUtilsMixin"
+    "tooltipscroller.GuiUtilsMixin",
+    "updatesuppressionblock.BlockShulkerBlockMixin",
+    "updatesuppressionblock.ChunkMixin"
   ],
   "mixins": [
   ]

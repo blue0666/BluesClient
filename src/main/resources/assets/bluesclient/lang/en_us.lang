@@ -1,0 +1,127 @@
+bluesclient.gui.title=BluesClient Configs
+bluesclient.gui.tab.value=Features
+bluesclient.gui.tab.hotkey=Hotkey
+bluesclient.gui.tab.list=List
+bluesclient.gui.tab.miscellaneous=Miscellaneous
+bluesclient.gui.tab.debug=Debug
+
+bluesclient.config.alwayssneak.name=AlwaysSneak
+bluesclient.config.alwayssneak.comment=Keep sneaking while moving freely and opening containers.
+
+bluesclient.config.autounlockplus.name=AutoUnlockPlus
+bluesclient.config.autounlockplus.comment=Use the world seed to calculate lock combinations and unlock them instantly in one tick.\nOn servers, the world seed is required.\nFor brute-force unlocking, use DebrisClient.
+
+bluesclient.config.autounlockinstant.name=AutoUnlockInstant
+
+bluesclient.config.lockworldseed.name=LockWorldSeed
+bluesclient.config.lockworldseed.comment=Enter the server's world seed to calculate lock combinations.
+
+bluesclient.config.tooltipscroller.name=ToolTipScroller
+bluesclient.config.tooltipscroller.comment=Hold Shift and scroll the mouse wheel to scroll item tooltips.
+
+bluesclient.config.tileentityesp.name=TileEntityEsp
+bluesclient.config.tileentityesp.comment=Especially useful in parasite buildings.
+
+bluesclient.config.tileentityespdistance.name=TileEntityEspDistance
+
+bluesclient.config.tileentityesptransparency.name=TileEntityEspTransparency
+bluesclient.config.tileentityesptransparency.comment=Lower the opacity if the white outlines are too distracting.
+
+bluesclient.config.tileentityespskipopened.name=TileEntityEspSkipOpened
+
+bluesclient.config.everythingnunchaku.name=EverythingNunchaku
+bluesclient.config.everythingnunchaku.comment=Let weapons use automatic fully charged attacks like nunchaku.\nAdapted from cdstk; special thanks!
+
+bluesclient.config.everythingnunchakuallowall.name=EverythingNunchakuAllowAll
+bluesclient.config.everythingnunchakuallowall.comment=Ignore the whitelist and allow continuous attacks while holding any item.
+
+bluesclient.config.rlcombatoffhand.name=RLCombatOffhand
+bluesclient.config.rlcombatoffhand.comment=Enable offhand auto-attack.\n§eTip: The server restricts which offhand items can attack. For example, offhand nunchaku do not work with default server settings.\nIn singleplayer, change the relevant configuration to enable them.§r
+
+bluesclient.config.rlcombatentityblacklist.name=RLCombatEntityBlacklist
+bluesclient.config.rlcombatentityblacklist.comment=Filter entities for offhand attacks.\nThis only prevents nunchaku-style continuous attacks. RLCombat handles attacks triggered by individual right-clicks.
+
+bluesclient.config.rlcombatoffhandnunchaku.name=RLCombatOffhandNunchaku
+bluesclient.config.rlcombatoffhandnunchaku.comment=Enable offhand attack animations, including nunchaku spinning.
+
+bluesclient.config.fastrightclick.name=FastRightClick
+bluesclient.config.fastrightclick.comment=Unlike tweakeroo's version, this turns off automatically when switching screens.
+
+bluesclient.config.fastleftclick.name=FastLeftClick
+bluesclient.config.fastleftclick.comment=Turns off automatically when switching screens and supports RLCombat.\nThis clicker will not work if another EverythingNunchaku mod is implemented.
+
+bluesclient.config.tileentityesplist.name=TileEntityEspList
+
+bluesclient.config.sneakopenblocklist.name=SneakOpenBlockList
+
+bluesclient.config.nunchakuitemclasswhitelist.name=NunchakuItemClassWhitelist
+
+bluesclient.config.nunchakuitemidwhitelist.name=NunchakuItemIDWhitelist
+
+bluesclient.config.nunchakuitemidblacklist.name=NunchakuItemIDBlacklist
+
+bluesclient.config.nunchakuentityblacklist.name=NunchakuEntityBlacklist
+
+bluesclient.config.openwindow.name=OpenWindow
+bluesclient.config.openwindow.comment=Open the mod configuration screen.
+
+bluesclient.config.alwayssneaktoggle.name=AlwaysSneakToggle
+bluesclient.config.alwayssneaktoggle.comment=Enable Always Sneak.
+
+bluesclient.config.everythingnunchakutoggle.name=EverythingNunchakuToggle
+bluesclient.config.everythingnunchakutoggle.comment=Enable Everything Nunchaku.
+
+bluesclient.config.flighttoggle.name=FlightToggle
+
+bluesclient.config.fastrightclicktoggle.name=FastRightClickToggle
+
+bluesclient.config.fastleftclicktoggle.name=FastLeftClickToggle
+
+bluesclient.config.witherspawneresp.name=WitherSpawnerEsp
+bluesclient.config.witherspawneresp.comment=Highlight wither spawners through blocks.
+
+bluesclient.config.gorgonspawneresp.name=GorgonSpawnerEsp
+bluesclient.config.gorgonspawneresp.comment=Highlight gorgon spawners through blocks.
+
+bluesclient.config.elderguardianspawneresp.name=ElderGuardianSpawnerEsp
+bluesclient.config.elderguardianspawneresp.comment=Highlight elder guardian spawners through blocks.
+
+bluesclient.config.blockfakelibrariantrade.name=BlockFakeLibrarianTrade
+bluesclient.config.blockfakelibrariantrade.comment=Block right-click interactions with fake villagers that cause explosions and debuffs.\nUse DebrisClient to highlight normal librarians.
+
+bluesclient.config.disableironskinrenderer.name=DisableIronSkinRenderer
+bluesclient.config.disableironskinrenderer.comment=Hide the Iron Skin visual effect, just becuase it's too ugly.
+
+bluesclient.config.disablecompasshud.name=DisableCompassHUD
+bluesclient.config.disablecompasshud.comment=Hide the coordinate overlay shown while holding a compass, including the 1.5 Luck Easter egg item.\nYou can still view coordinates with F3.
+
+bluesclient.config.nohiddenflag.name=NoHiddenFlag
+bluesclient.config.nohiddenflag.comment=Hold Shift while hovering over an item to reveal hidden information and the Pandora's Curse enchantment.\nEspecially useful for cursed items.\nNote: This may override, or be overridden by, DebrisClient's extra information display.
+
+bluesclient.config.nosrpbiomefog.name=NoSRPBiomeFog
+
+bluesclient.config.nosrpblockspread.name=NoSRPBlockSpread
+bluesclient.config.nosrpblockspread.comment=Completely disable block infestation in parasite biomes.\nThese infestation events have a huge calculation amount, causing lags.\n§eSingleplayer only.§r
+
+bluesclient.config.highlightrustmob.name=HighlightRustMob
+bluesclient.config.highlightrustmob.comment=Highlight infernal mobs with <Rust>.\nThey remain a serious threat even to late-game players.
+
+bluesclient.config.gammaoverride.name=GammaOverride
+
+bluesclient.config.damagedisplayhurt.name=DamageDisplayHurt
+bluesclient.config.damagedisplayhurt.comment=Display incoming damage sources and types in the lower-left corner, including health changes that are not damage.\n§eDoes not work on multiplayer servers.§r
+
+bluesclient.config.damagedisplayattack.name=DamageDisplayAttack
+bluesclient.config.damagedisplayattack.comment=Display damage dealt by the player in the lower-left corner.\nRaw damage: before ForgeHooks.onLivingHurt posts to the event bus.\nFinal damage: after ForgeHooks.onLivingDamage finishes processing the event bus.\n§eDoes not work on multiplayer servers.§r
+
+bluesclient.config.nodamagefalloff.name=NoDamageFallOff
+bluesclient.config.nodamagefalloff.comment=Disable Dregora's damage falloff system.\n§eDoes not work on multiplayer servers.§r
+
+bluesclient.config.flightdebug.name=FlightDebug
+bluesclient.config.flightdebug.comment=Potion Ring of Flight Plus
+
+bluesclient.config.updatesuppressionblock.name=UpdateSuppressionBlock
+bluesclient.config.updatesuppressionblock.comment=Name a shulker box <更新抑制器> or <updatesuppressor> to throw an exception when a comparator reads it.\n§eDo not enable this unless you understand what update suppression is.§r
+
+bluesclient.config.mixindebug.name=MixinDebug
+bluesclient.config.mixindebug.comment=Make Critical Strike always trigger a critical hit.

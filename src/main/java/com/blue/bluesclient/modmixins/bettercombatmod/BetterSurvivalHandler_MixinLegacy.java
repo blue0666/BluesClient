@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+@SuppressWarnings("unresolvable-target")
 @Mixin(targets = "bettercombat.mod.util.BetterSurvivalHandler", remap = false)
 public abstract class BetterSurvivalHandler_MixinLegacy {
     @ModifyReturnValue(method = "isNunchaku", at = @At("RETURN"), remap = false)
