@@ -1,5 +1,7 @@
 ## BluesClient1.12
 
+中文 | [English](docs/readme/README.en.md)
+
 ---
 
 Rlcraft/RlcDregora整合包辅助模组，提供了一些轮椅与自动化功能，目前功能以服务Dregora版本优先级较高
@@ -12,9 +14,9 @@ Rlcraft/RlcDregora整合包辅助模组，提供了一些轮椅与自动化功�
 
 前置mod：
 
-**德雷版**：需安装Malilib，MixinBooter
+**德雷版**：需安装Malilib，[Malilib仓库下载地址地址](https://masa.dy.fi/tmp/minecraft/mods/malilib/malilib-forge-1.12.2-0.10.0-dev.23.jar)
 
-**原版RLC**：还需要额外安装FermiumBooter
+**原版RLC**：还需要额外安装FermiumBooter，[FermiumBooter下载地址](https://modrinth.com/mod/fermiumbooter/versions)
 
 **七咒版**：部分版本可能自带malilib，确保不要重复安装
 
