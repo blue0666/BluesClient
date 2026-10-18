@@ -76,6 +76,14 @@ public class Callbacks {
             return true;
         });
 
+        ToggleTileEntityESP.getKeybind().setCallback((a,k)->{
+            TileEntityEsp.toggleBooleanValue();
+            InfoUtils.printBooleanConfigToggleMessage(
+                    TileEntityEsp.getPrettyName(),
+                    TileEntityEsp.getBooleanValue());
+            return true;
+        });
+
         Runnable reload = NunchakuConfigProvider::initClientNunchakus;
         BCConfig.NunchakuItemIDWhitelist.setValueChangeCallback(c -> reload.run());
         BCConfig.NunchakuItemIDBlacklist.setValueChangeCallback(c -> reload.run());

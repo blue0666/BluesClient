@@ -1,6 +1,7 @@
 package com.blue.bluesclient.feat.blockesp;
 
 import com.blue.bluesclient.config.BCConfig;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
@@ -60,11 +61,16 @@ public final class BlockEspRenderer {
         float alpha = BCConfig.TileEntityEspTransparency.getIntegerValue()/100.0F;
 
         for (BlockPos pos : positions) {
-            AxisAlignedBB bb = new AxisAlignedBB(pos)
+            IBlockState state = mc.world.getBlockState(pos);
+
+            AxisAlignedBB bb2 = state
+                    .getSelectedBoundingBox(mc.world, pos)
                     .grow(0.002D)
                     .offset(-vx, -vy, -vz);
 
-            RenderGlobal.drawSelectionBoundingBox(bb, red, green, blue, alpha);
+            RenderGlobal.drawSelectionBoundingBox(
+                    bb2, red, green, blue, alpha
+            );
         }
 
         GlStateManager.glLineWidth(1.0F);

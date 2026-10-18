@@ -8,8 +8,11 @@ bluesclient.gui.tab.debug=Debug
 bluesclient.config.alwayssneak.name=AlwaysSneak
 bluesclient.config.alwayssneak.comment=Keep sneaking while moving freely and opening containers.
 
+bluesclient.config.autounlockenum.name=AutoUnlockEnum
+bluesclient.config.autounlockenum.comment=Use enumeration + quick packet delivery to unlock locks as quickly as possible.
+
 bluesclient.config.autounlockplus.name=AutoUnlockPlus
-bluesclient.config.autounlockplus.comment=Use the world seed to calculate lock combinations and unlock them instantly in one tick.\nOn servers, the world seed is required.\nFor brute-force unlocking, use DebrisClient.
+bluesclient.config.autounlockplus.comment=Use the world seed to calculate lock combinations and unlock them instantly in one tick.\nOn servers, the world seed is required.\nFor universal enum unlocking, use DebrisClient.
 
 bluesclient.config.autounlockinstant.name=AutoUnlockInstant
 
@@ -72,6 +75,8 @@ bluesclient.config.everythingnunchakutoggle.name=EverythingNunchakuToggle
 bluesclient.config.everythingnunchakutoggle.comment=Enable Everything Nunchaku.
 
 bluesclient.config.flighttoggle.name=FlightToggle
+
+bluesclient.config.toggletileentityesp.name=ToggleTileEntityESP
 
 bluesclient.config.fastrightclicktoggle.name=FastRightClickToggle
 

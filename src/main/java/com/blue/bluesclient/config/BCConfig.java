@@ -52,6 +52,7 @@ public class BCConfig implements IConfigHandler {
 
     public static final List<IConfigBase> VALUE;
     public static final ConfigBoolean AlwaysSneak = ofLocalizedBoolean("alwayssneak","常驻潜行专精", false, "将潜行与移动分离，常驻潜行且仍旧可以自由移动和开箱");
+    public static final ConfigBoolean AutoUnlockEnum = ofLocalizedBoolean("autounlockenum","自动开锁:枚举",false,"模拟手动试错并开锁");
     public static final ConfigBoolean AutoUnlockPlus = ofLocalizedBoolean("autounlockplus", "自动开锁+", false, "使用世界种子强解开锁密码并自动一次性打开\n如果是服务器中，必须有种子才可解\n枚举法开锁请使用DebrisClient");
     public static final ConfigBoolean AutoUnlockInstant = ofLocalizedBoolean("autounlockinstant", "自动开锁+++", false);
     public static final ConfigString LockWorldSeed = ofLocalizedString("lockworldseed", "开锁世界种子", "", "如果服务器中，输入种子才可以解出密码");
@@ -114,8 +115,10 @@ public class BCConfig implements IConfigHandler {
     public static final ConfigHotkey AlwaysSneakToggle = ofLocalizedHotkey("alwayssneaktoggle", "切换一直潜行", "", "开启一直潜行");
     public static final ConfigHotkey EverythingNunchakuToggle = ofLocalizedHotkey("everythingnunchakutoggle", "切换万物双截棍", "", "开启万物双截棍");
     public static final ConfigHotkey FlightToggle = ofLocalizedHotkey("flighttoggle", "切换飞行调试", "");
+    public static final ConfigHotkey ToggleTileEntityESP = ofLocalizedHotkey("toggletileentityesp","切换容器透视","");
     public static final ConfigHotkey FastRightClickToggle = ofLocalizedHotkey("fastrightclicktoggle", "切换右键连点", "");
     public static final ConfigHotkey FastLeftClickToggle = ofLocalizedHotkey("fastleftclicktoggle", "切换左键连点", "");
+
 
     public static final List<IConfigBase> MISCELLANEOUS;
     public static final ConfigBoolean WitherSpawnerEsp = ofLocalizedBoolean("witherspawneresp", "凋零刷怪笼警告", false, "透视警告凋零刷怪笼");
@@ -142,6 +145,7 @@ public class BCConfig implements IConfigHandler {
         VALUE = ImmutableList.of(
                 AlwaysSneak,
                 ToolTipScroller,
+                AutoUnlockEnum,
                 AutoUnlockPlus,
                 AutoUnlockInstant,
                 LockWorldSeed,
@@ -169,6 +173,7 @@ public class BCConfig implements IConfigHandler {
                 AlwaysSneakToggle,
                 EverythingNunchakuToggle,
                 FlightToggle,
+                ToggleTileEntityESP,
                 FastRightClickToggle,
                 FastLeftClickToggle
         );

@@ -1,8 +1,7 @@
 package com.blue.bluesclient.modmixins.locks;
 
 import com.blue.bluesclient.config.BCConfig;
-import com.blue.bluesclient.feat.autounlock.InstantUnlock;
-import com.blue.bluesclient.feat.autounlock.LocksController;
+import com.blue.bluesclient.feat.autounlock.*;
 import melonslise.locks.client.gui.LockPickingGui;
 import melonslise.locks.client.gui.sprite.Sprite;
 import melonslise.locks.common.container.LockPickingContainer;
@@ -10,6 +9,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -29,40 +29,87 @@ public abstract class LockPickingGuiMixin extends GuiContainer {
     @Shadow
     protected abstract int getSelectedPin();
 
+    @Unique
+    private int unlockMode;
+
+    @Inject(method = "<init>", at = @At("RETURN"))
+    private void bluesclient$unlockModeSwitch(
+            LockPickingContainer cont, CallbackInfo ci) {
+        LockDriver.disable();
+
+        if (BCConfig.AutoUnlockInstant.getBooleanValue()) {
+            this.unlockMode = 1;
+            InstantUnlock.tryUnlock(this, this.length);
+            return;
+        }
+
+        if (BCConfig.AutoUnlockPlus.getBooleanValue()) {
+            this.unlockMode = 2;
+            LocksController.onOpen(this, this.length);
+            return;
+        }
+
+        if (BCConfig.AutoUnlockEnum.getBooleanValue()) {
+            this.unlockMode = 3;
+            EnumUnlock.begin(cont);
+            return;
+        }
+
+        this.unlockMode = 0;
+    }
+
     public LockPickingGuiMixin(Container inventorySlotsIn) {
         super(inventorySlotsIn);
     }
 
-    @Inject(method = "<init>", at = @At("RETURN"))
-    private void bluesclient$onOpen(LockPickingContainer cont, CallbackInfo ci) {
-        //这逻辑写的越来越乱了= =
-        if(!BCConfig.AutoUnlockPlus.getBooleanValue() && !BCConfig.AutoUnlockInstant.getBooleanValue()) return;
-        if (InstantUnlock.canRun()) {
-            InstantUnlock.tryUnlock(this, this.length);
-            return;
-        }
-        LocksController.onOpen(this, this.length);
-    }
-
     @Inject(method = "updateScreen", at = @At("HEAD"), remap = true)
     private void bluesclient$onTick(CallbackInfo ci) {
-        if(!BCConfig.AutoUnlockPlus.getBooleanValue() && !BCConfig.AutoUnlockInstant.getBooleanValue()) return;
-        if (InstantUnlock.autoCloseGuiAfterUnlock((LockPickingGui) (Object) this)) {
-            this.mc.player.closeScreen();
-            return;
+        LockPickingGui gui = (LockPickingGui) (Object) this;
+        LockPickingContainer cont = LocksAccess.container(gui);
+
+        switch (this.unlockMode) {
+            case 1:
+                if (InstantUnlock.autoCloseGuiAfterUnlock(gui)) {
+                    this.mc.player.closeScreen();
+                }
+                break;
+
+            case 2:
+                if (BCConfig.AutoUnlockPlus.getBooleanValue()) {
+                    LocksController.onTick(this, this.getSelectedPin());
+                }
+                break;
+
+            case 3:
+                if (cont.isOpen()) {
+                    EnumUnlock.end(cont);
+                    this.mc.player.closeScreen();
+                    return;
+                }
+
+                EnumUnlock.onTick(cont);
+                break;
+
+            default:
+                break;
         }
-        LocksController.onTick(this, this.getSelectedPin());
     }
 
-    @Inject(method = "updateLockPickSpeed", at = @At("RETURN"), remap = false, cancellable = true)
+    @Inject(
+            method = "updateLockPickSpeed",
+            at = @At("RETURN"),
+            remap = false
+    )
     private void bluesclient$forcePickSpeed(CallbackInfo ci) {
-        //本来可以用操作键盘来控制撬锁器，但是整合包内键盘的事件太多了(与Debris同时开启的时候被覆写)，因此转为直接修改操作撬锁器本身
-        if(!BCConfig.AutoUnlockPlus.getBooleanValue() && !BCConfig.AutoUnlockInstant.getBooleanValue()) return;
-        if(!BCConfig.AutoUnlockPlus.getBooleanValue()) return;
-
-        if (this.frozen) {
+        //本来可以用操作键盘来控制撬锁器，但是整合包内的Replay-Lock Mod对键盘操作有反作弊检验，
+        //不允许未按下键盘的移动动作，因此这里转为直接修改Speed本身
+        if (this.unlockMode != 2
+                || !LocksController.canRun()
+                || !LockDriver.isActive()
+                || this.frozen) {
             return;
         }
+
         this.lockPick.speedX = LocksController.desiredPickSpeed();
     }
 }

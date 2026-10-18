@@ -8,10 +8,14 @@ bluesclient.gui.tab.debug=调试
 bluesclient.config.alwayssneak.name=常驻潜行专精
 bluesclient.config.alwayssneak.comment=将潜行与移动分离，常驻潜行且仍旧可以自由移动和开箱
 
-bluesclient.config.autounlockplus.name=自动开锁+
+bluesclient.config.autounlockenum.name=自动开锁:枚举
+bluesclient.config.autounlockenum.comment=尽可能快的发包以提高开锁速度，但不能避免通电和撬锁器消耗
+
+
+bluesclient.config.autounlockplus.name=自动开锁:求解
 bluesclient.config.autounlockplus.comment=使用世界种子强解开锁密码并自动一次性打开\n如果是服务器中，必须有种子才可解\n枚举法开锁请使用DebrisClient
 
-bluesclient.config.autounlockinstant.name=自动开锁+++
+bluesclient.config.autounlockinstant.name=自动开锁:瞬间求解
 
 bluesclient.config.lockworldseed.name=开锁世界种子
 bluesclient.config.lockworldseed.comment=如果服务器中，输入种子才可以解出密码
@@ -72,6 +76,8 @@ bluesclient.config.everythingnunchakutoggle.name=切换万物双截棍
 bluesclient.config.everythingnunchakutoggle.comment=开启万物双截棍
 
 bluesclient.config.flighttoggle.name=切换飞行调试
+
+bluesclient.config.toggletileentityesp.name=切换容器透视
 
 bluesclient.config.fastrightclicktoggle.name=切换右键连点
 
