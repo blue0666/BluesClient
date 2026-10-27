@@ -12,7 +12,7 @@ bluesclient.config.autounlockenum.name=AutoUnlockEnum
 bluesclient.config.autounlockenum.comment=Use enumeration + quick packet delivery to unlock locks as quickly as possible.
 
 bluesclient.config.autounlockplus.name=AutoUnlockPlus
-bluesclient.config.autounlockplus.comment=Use the world seed to calculate lock combinations and unlock them instantly in one tick.\nOn servers, the world seed is required.\nFor universal enum unlocking, use DebrisClient.
+bluesclient.config.autounlockplus.comment=Use the world seed to calculate lock combinations and unlock them instantly in one tick.\n§eOn servers, the world seed is required.§r
 
 bluesclient.config.autounlockinstant.name=AutoUnlockInstant
 
@@ -128,5 +128,5 @@ bluesclient.config.flightdebug.comment=Potion Ring of Flight Plus
 bluesclient.config.updatesuppressionblock.name=UpdateSuppressionBlock
 bluesclient.config.updatesuppressionblock.comment=Name a shulker box <更新抑制器> or <updatesuppressor> to throw an exception when a comparator reads it.\n§eDo not enable this unless you understand what update suppression is.§r
 
-bluesclient.config.mixindebug.name=MixinDebug
-bluesclient.config.mixindebug.comment=Make Critical Strike always trigger a critical hit.
+bluesclient.config.enchantmentdebug.name=EnchantmentDebug
+bluesclient.config.enchantmentdebug.comment=Roll back performance of many enchantments into 293.

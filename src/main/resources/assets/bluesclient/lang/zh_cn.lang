@@ -13,12 +13,12 @@ bluesclient.config.autounlockenum.comment=尽可能快的发包以提高开锁�
 
 
 bluesclient.config.autounlockplus.name=自动开锁:求解
-bluesclient.config.autounlockplus.comment=使用世界种子强解开锁密码并自动一次性打开\n如果是服务器中，必须有种子才可解\n枚举法开锁请使用DebrisClient
+bluesclient.config.autounlockplus.comment=使用世界种子强解开锁密码并自动一次性打开\n§e服务器中需要输入种子才生效§r
 
 bluesclient.config.autounlockinstant.name=自动开锁:瞬间求解
 
 bluesclient.config.lockworldseed.name=开锁世界种子
-bluesclient.config.lockworldseed.comment=如果服务器中，输入种子才可以解出密码
+bluesclient.config.lockworldseed.comment=如果服务器中，输入种子才可以使用求解法
 
 bluesclient.config.tooltipscroller.name=物品信息拖动
 bluesclient.config.tooltipscroller.comment=Shift+滚轮上下拖动物品的属性信息界面
@@ -129,5 +129,5 @@ bluesclient.config.flightdebug.comment=飞行的药水指环Plus
 bluesclient.config.updatesuppressionblock.name=模拟更新抑制
 bluesclient.config.updatesuppressionblock.comment=将潜影盒命名为<更新抑制器>或者<updatesuppressor>，会由比较器抛出异常\n§e如果你不知道什么是更新抑制，请不要动这个§r
 
-bluesclient.config.mixindebug.name=附魔调试
-bluesclient.config.mixindebug.comment=让致命一击必定暴击
+bluesclient.config.enchantmentdebug.name=附魔调试
+bluesclient.config.enchantmentdebug.comment=回调净化之刃，侮辱之刃，强化锋利的机制到293中

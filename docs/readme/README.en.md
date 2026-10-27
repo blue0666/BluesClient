@@ -18,7 +18,7 @@ Dependencies:
 
 **RLCraft**:Also requires FermiumBooter，[FermiumBooter download](https://modrinth.com/mod/fermiumbooter/versions)
 
-**RLC MXAddons**:Some versions may already inclueds malilib, so make sure not to install it repeatedly.
+**RLC MXAddons**:Some versions may already includes malilib, so make sure not to install it repeatedly.
 
 **Very Important**:Please don't rename the mod and the dependencies, or add prefixes. Due to the mod loading sequence, adding prefixes make mods load before dependencies, causing crash because it cannot find dependencies.
 

@@ -139,8 +139,7 @@ public class BCConfig implements IConfigHandler {
     public static final ConfigBoolean NoDamageFallOff = ofLocalizedBoolean("nodamagefalloff", "禁用伤害衰减", false, "禁用德雷版本的伤害衰减系统\n" + TextFormatting.YELLOW + "服务器中不生效" + TextFormatting.RESET);
     public static final ConfigBoolean FlightDebug = ofLocalizedBoolean("flightdebug", "飞行调试", false, "飞行的药水指环Plus");
     public static final ConfigBoolean UpdateSuppressionBlock = ofLocalizedBoolean("updatesuppressionblock", "模拟更新抑制", false, "将潜影盒命名为<更新抑制器>或者<updatesuppressor>，会由比较器抛出异常\n" + TextFormatting.YELLOW + "如果你不知道什么是更新抑制，请不要动这个" + TextFormatting.RESET);
-    public static final ConfigBoolean MixinDebug = ofLocalizedBoolean("mixindebug", "附魔调试", false, "让致命一击必定暴击");
-
+    public static final ConfigBoolean EnchantmentDebug = ofLocalizedBoolean("enchantmentdebug", "附魔调试", false, "回调侮辱之刃，强化锋利");
     static {
         VALUE = ImmutableList.of(
                 AlwaysSneak,
@@ -196,7 +195,7 @@ public class BCConfig implements IConfigHandler {
                 NoDamageFallOff,
                 FlightDebug,
                 UpdateSuppressionBlock,
-                MixinDebug
+                EnchantmentDebug
         );
         Instance.load();
     }

@@ -51,4 +51,32 @@ public class ModReference {
             return srpBelow110 = false;
         }
     }
+
+    private static Boolean enchantmentRollbackVersion = null;
+
+    public static boolean isEnchantmentRollbackVersion() {
+        if (enchantmentRollbackVersion != null) {
+            return enchantmentRollbackVersion;
+        }
+
+        try {
+            if (!Loader.isModLoaded("somanyenchantments")
+                    || !Loader.isModLoaded("bettercombatmod")) {
+                return enchantmentRollbackVersion = false;
+            }
+
+            String version = Loader.instance().getIndexedModList()
+                    .get("somanyenchantments").getVersion();
+
+            ArtifactVersion current = new DefaultArtifactVersion(version);
+            ArtifactVersion min = new DefaultArtifactVersion("1.0.0");
+            ArtifactVersion max = new DefaultArtifactVersion("2.0.0");
+
+            return enchantmentRollbackVersion =
+                    current.compareTo(min) >= 0
+                            && current.compareTo(max) < 0;
+        } catch (Exception e) {
+            return enchantmentRollbackVersion = false;
+        }
+    }
 }

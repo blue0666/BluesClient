@@ -54,6 +54,13 @@ public class LateMixinConfig implements IMixinConfigPlugin {
         if (mixinClassName.endsWith("bettercombatmod.BetterSurvivalHandler_MixinLegacy")) {
             return !ModReference.hasRlCombatServerConfig();
         }
+        if (mixinClassName.endsWith(
+                "somanyenchantments.EnchantmentReviledBladeMixin")
+                || mixinClassName.endsWith(
+                "somanyenchantments.EnchantmentReinforcedSharpnessMixin")) {
+
+            return ModReference.isEnchantmentRollbackVersion();
+        }
         if ("srparasites".equals(modId)) {
             return ModReference.isSrpBelow110();
         }
