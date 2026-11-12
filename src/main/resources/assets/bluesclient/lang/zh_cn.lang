@@ -12,10 +12,10 @@ bluesclient.config.autounlockenum.name=自动开锁:枚举
 bluesclient.config.autounlockenum.comment=尽可能快的发包以提高开锁速度，但不能避免通电和撬锁器消耗
 
 
-bluesclient.config.autounlockplus.name=自动开锁:求解
+bluesclient.config.autounlockplus.name=§6自动开锁:求解§r
 bluesclient.config.autounlockplus.comment=使用世界种子强解开锁密码并自动一次性打开\n§e服务器中需要输入种子才生效§r
 
-bluesclient.config.autounlockinstant.name=自动开锁:瞬间求解
+bluesclient.config.autounlockinstant.name=§6自动开锁:瞬间求解§r
 
 bluesclient.config.lockworldseed.name=开锁世界种子
 bluesclient.config.lockworldseed.comment=如果服务器中，输入种子才可以使用求解法
@@ -106,7 +106,7 @@ bluesclient.config.nohiddenflag.comment=光标对准物品后按Shift，显示�
 
 bluesclient.config.nosrpbiomefog.name=禁用寄生虫群系迷雾
 
-bluesclient.config.nosrpblockspread.name=禁用寄生虫方块污染
+bluesclient.config.nosrpblockspread.name=§6禁用寄生虫方块污染§r
 bluesclient.config.nosrpblockspread.comment=彻底禁用寄生虫群系的任何方块污染动作\n这一事件能给游戏带来巨额计算压力\n§e仅单人游戏中生效§r
 
 bluesclient.config.highlightrustmob.name=高亮生锈精英怪
@@ -114,20 +114,20 @@ bluesclient.config.highlightrustmob.comment=高亮警告生锈精英怪\n对后�
 
 bluesclient.config.gammaoverride.name=伽马覆写
 
-bluesclient.config.damagedisplayhurt.name=伤害调试:受击
+bluesclient.config.damagedisplayhurt.name=§6伤害调试:受击§r
 bluesclient.config.damagedisplayhurt.comment=在左下角实时显示玩家受到的伤害来源与类型，包括非<伤害>的血量变化\n§e服务器中不生效§r
 
-bluesclient.config.damagedisplayattack.name=伤害调试:攻击
+bluesclient.config.damagedisplayattack.name=§6伤害调试:攻击§r
 bluesclient.config.damagedisplayattack.comment=在左下角实时显示玩家造成的伤害\n原始伤害：ForgeHooks.onLivingHurt 进入总线之前\n实际伤害：ForgeHooks.onLivingDamage 整次总线之后\n§e服务器中不生效§r
 
-bluesclient.config.nodamagefalloff.name=禁用伤害衰减
+bluesclient.config.nodamagefalloff.name=§6禁用伤害衰减§r
 bluesclient.config.nodamagefalloff.comment=禁用德雷版本的伤害衰减系统\n§e服务器中不生效§r
 
-bluesclient.config.flightdebug.name=飞行调试
+bluesclient.config.flightdebug.name=§6飞行调试§r
 bluesclient.config.flightdebug.comment=飞行的药水指环Plus
 
-bluesclient.config.updatesuppressionblock.name=模拟更新抑制
+bluesclient.config.updatesuppressionblock.name=§6模拟更新抑制§r
 bluesclient.config.updatesuppressionblock.comment=将潜影盒命名为<更新抑制器>或者<updatesuppressor>，会由比较器抛出异常\n§e如果你不知道什么是更新抑制，请不要动这个§r
 
-bluesclient.config.enchantmentdebug.name=附魔调试
+bluesclient.config.enchantmentdebug.name=§6附魔调试§r
 bluesclient.config.enchantmentdebug.comment=回调净化之刃，侮辱之刃，强化锋利的机制到293中

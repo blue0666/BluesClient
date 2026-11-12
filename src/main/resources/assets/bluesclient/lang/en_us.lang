@@ -11,10 +11,10 @@ bluesclient.config.alwayssneak.comment=Keep sneaking while moving freely and ope
 bluesclient.config.autounlockenum.name=AutoUnlockEnum
 bluesclient.config.autounlockenum.comment=Use enumeration + quick packet delivery to unlock locks as quickly as possible.
 
-bluesclient.config.autounlockplus.name=AutoUnlockPlus
+bluesclient.config.autounlockplus.name=§6AutoUnlockPlus§r
 bluesclient.config.autounlockplus.comment=Use the world seed to calculate lock combinations and unlock them instantly in one tick.\n§eOn servers, the world seed is required.§r
 
-bluesclient.config.autounlockinstant.name=AutoUnlockInstant
+bluesclient.config.autounlockinstant.name=§6AutoUnlockInstant§r
 
 bluesclient.config.lockworldseed.name=LockWorldSeed
 bluesclient.config.lockworldseed.comment=Enter the server's world seed to calculate lock combinations.
@@ -105,7 +105,7 @@ bluesclient.config.nohiddenflag.comment=Hold Shift while hovering over an item t
 
 bluesclient.config.nosrpbiomefog.name=NoSRPBiomeFog
 
-bluesclient.config.nosrpblockspread.name=NoSRPBlockSpread
+bluesclient.config.nosrpblockspread.name=§6NoSRPBlockSpread§r
 bluesclient.config.nosrpblockspread.comment=Completely disable block infestation in parasite biomes.\nThese infestation events have a huge calculation amount, causing lags.\n§eSingleplayer only.§r
 
 bluesclient.config.highlightrustmob.name=HighlightRustMob
@@ -113,20 +113,20 @@ bluesclient.config.highlightrustmob.comment=Highlight infernal mobs with <Rust>.
 
 bluesclient.config.gammaoverride.name=GammaOverride
 
-bluesclient.config.damagedisplayhurt.name=DamageDisplayHurt
+bluesclient.config.damagedisplayhurt.name=§6DamageDisplayHurt§r
 bluesclient.config.damagedisplayhurt.comment=Display incoming damage sources and types in the lower-left corner, including health changes that are not damage.\n§eDoes not work on multiplayer servers.§r
 
-bluesclient.config.damagedisplayattack.name=DamageDisplayAttack
+bluesclient.config.damagedisplayattack.name=§6DamageDisplayAttack§r
 bluesclient.config.damagedisplayattack.comment=Display damage dealt by the player in the lower-left corner.\nRaw damage: before ForgeHooks.onLivingHurt posts to the event bus.\nFinal damage: after ForgeHooks.onLivingDamage finishes processing the event bus.\n§eDoes not work on multiplayer servers.§r
 
-bluesclient.config.nodamagefalloff.name=NoDamageFallOff
+bluesclient.config.nodamagefalloff.name=§6NoDamageFallOff§r
 bluesclient.config.nodamagefalloff.comment=Disable Dregora's damage falloff system.\n§eDoes not work on multiplayer servers.§r
 
-bluesclient.config.flightdebug.name=FlightDebug
+bluesclient.config.flightdebug.name=§6FlightDebug§r
 bluesclient.config.flightdebug.comment=Potion Ring of Flight Plus
 
-bluesclient.config.updatesuppressionblock.name=UpdateSuppressionBlock
+bluesclient.config.updatesuppressionblock.name=§6UpdateSuppressionBlock§r
 bluesclient.config.updatesuppressionblock.comment=Name a shulker box <更新抑制器> or <updatesuppressor> to throw an exception when a comparator reads it.\n§eDo not enable this unless you understand what update suppression is.§r
 
-bluesclient.config.enchantmentdebug.name=EnchantmentDebug
+bluesclient.config.enchantmentdebug.name=§6EnchantmentDebug§r
 bluesclient.config.enchantmentdebug.comment=Roll back performance of many enchantments into 293.

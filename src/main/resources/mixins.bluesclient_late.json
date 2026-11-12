@@ -17,7 +17,8 @@
     "somanyenchantments.EnchantmentReinforcedSharpnessMixin",
     "somanyenchantments.EnchantmentReviledBladeMixin",
     "srparasites.BlockInfestedRubbleMixin",
-    "srparasites.ParasiteEventWorldSpreadMixin"
+    "srparasites.ParasiteEventWorldSpreadMixin",
+    "srpmixins.SRPSmoothFogMixin"
   ],
   "server": [],
   "client": [

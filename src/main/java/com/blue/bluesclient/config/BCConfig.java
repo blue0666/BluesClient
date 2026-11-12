@@ -53,8 +53,8 @@ public class BCConfig implements IConfigHandler {
     public static final List<IConfigBase> VALUE;
     public static final ConfigBoolean AlwaysSneak = ofLocalizedBoolean("alwayssneak","常驻潜行专精", false, "将潜行与移动分离，常驻潜行且仍旧可以自由移动和开箱");
     public static final ConfigBoolean AutoUnlockEnum = ofLocalizedBoolean("autounlockenum","自动开锁:枚举",false,"模拟手动试错并开锁");
-    public static final ConfigBoolean AutoUnlockPlus = ofLocalizedBoolean("autounlockplus", "自动开锁+", false, "使用世界种子强解开锁密码并自动一次性打开\n如果是服务器中，必须有种子才可解\n枚举法开锁请使用DebrisClient");
-    public static final ConfigBoolean AutoUnlockInstant = ofLocalizedBoolean("autounlockinstant", "自动开锁+++", false);
+    public static final ConfigBoolean AutoUnlockPlus = ofLocalizedBoolean("autounlockplus", "自动开锁:求解", false, "使用世界种子强解开锁密码并自动一次性打开\n如果是服务器中，必须有种子才可解\n枚举法开锁请使用DebrisClient");
+    public static final ConfigBoolean AutoUnlockInstant = ofLocalizedBoolean("autounlockinstant", "自动开锁:瞬间求解", false);
     public static final ConfigString LockWorldSeed = ofLocalizedString("lockworldseed", "开锁世界种子", "", "如果服务器中，输入种子才可以解出密码");
 
     public static final ConfigBoolean ToolTipScroller = ofLocalizedBoolean("tooltipscroller", "物品信息拖动", false, "Shift+滚轮上下拖动物品的属性信息界面");
